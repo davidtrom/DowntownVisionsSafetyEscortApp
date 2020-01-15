@@ -10,8 +10,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class AmbassadorService {
 
-    @Autowired
+
     private AmbassadorRepo ambassadorRepo;
+
+    @Autowired
+    public AmbassadorService(AmbassadorRepo ambassadorRepo) {
+        this.ambassadorRepo = ambassadorRepo;
+    }
 
     public Boolean newAmbassador(Ambassador ambassador){
         Ambassador newAmbassador = new Ambassador();
@@ -22,12 +27,8 @@ public class AmbassadorService {
         return true;
     }
 
-    public Boolean deleteAmbassador(Long id){
-        if(ambassadorRepo.existsById(id)){
-            ambassadorRepo.deleteById(id);
-            return true;
-        }
-        return false;
+    public void deleteAmbassador(Long id){
+          ambassadorRepo.deleteById(id);
     }
 
     public Boolean updateAmbassador(Long id, Ambassador ambassador){
@@ -52,11 +53,33 @@ public class AmbassadorService {
         return ambassadorRepo.findAll();
     }
 
-    public Ambassador findByFirstName(String firstName) {
-        return ambassadorRepo.findByFirstName(firstName);
+    public Iterable<Ambassador> findAllAmbassadorsByFirstName(String firstName) {
+        Iterable<Ambassador> ambassadors = ambassadorRepo.findAmbassadorsByFirstName(firstName);
+        if (ambassadors == null) {
+            return null;
+        } else {
+            return ambassadors;
+        }
     }
 
-    public Ambassador findByLastName(String lastName) {
-        return ambassadorRepo.findByLastName(lastName);
+        public Iterable<Ambassador> findAllAmbassadorsByLastName(String lastName) {
+            Iterable<Ambassador> ambassadors = ambassadorRepo.findAmbassadorsByLastName(lastName);
+            if (ambassadors == null) {
+                return null;
+            } else {
+                return ambassadors;
+            }
+        }
+
+    public Boolean ambassadorExists(Long id)    {
+        if(ambassadorRepo.existsById(id))   {
+            return true;
+        }   else {
+            return  false;
+        }
+    }
+
+    public Iterable<Ambassador> findAllAmbassadors()    {
+        return ambassadorRepo.findAll();
     }
 }
