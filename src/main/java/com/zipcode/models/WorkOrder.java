@@ -23,10 +23,11 @@ public class WorkOrder {
     private String description;
     @NotNull
     private String location;
-    private LocalDate date;
+    private LocalDate dateCreated;
     //optional image upload
     @NotNull
     private WorkOrderStatus workOrderStatus;
+    private LocalDate dateCompleted;
 
 
 
@@ -39,8 +40,9 @@ public class WorkOrder {
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.date = date;
+        this.dateCreated = date;
         this.workOrderStatus = WorkOrderStatus.OPEN;
+        this.dateCompleted = null;
     }
 
 
@@ -51,7 +53,8 @@ public class WorkOrder {
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.date = date;
+        this.dateCreated = date;
+        this.dateCompleted = null;
     }
 
     public Long getId() {
@@ -94,12 +97,12 @@ public class WorkOrder {
         this.location = location;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateCreated(LocalDate date) {
+        this.dateCreated = date;
     }
 
     public WorkOrderStatus getWorkOrderStatus() {
@@ -108,5 +111,13 @@ public class WorkOrder {
 
     public void setWorkOrderStatus(WorkOrderStatus status) {
         this.workOrderStatus = status;
+    }
+
+    public LocalDate getDateCompleted() {
+        return dateCompleted;
+    }
+
+    public void setDateCompleted(LocalDate dateCompleted) {
+        this.dateCompleted = dateCompleted;
     }
 }

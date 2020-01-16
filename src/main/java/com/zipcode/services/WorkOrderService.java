@@ -6,6 +6,9 @@ import com.zipcode.repositories.WorkOrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Service
 public class WorkOrderService {
 
@@ -13,36 +16,35 @@ public class WorkOrderService {
 
     private WorkOrderRepo workOrderRepo;
 
-    //new
-
-    //update
-
-    //delete
-
-    //get methods
-
-    public Iterable<WorkOrder> displayAllWorkOrders (){
-        return workOrderRepo.findAll();
-    }
-
-    public WorkOrder findWorkOrderById(Long reportID){
-        if (workOrderRepo.findById(reportID).isPresent()) {
-            return workOrderRepo.findById(reportID).get();
-        }
-        else{
-            return null;
-        }
-    }
-
+    //----------------------------------new----------------------------------
     public WorkOrder createWorkOrder (WorkOrder workOrder) {
         workOrder.setFirstName(workOrder.getFirstName());
         workOrder.setLastName(workOrder.getLastName());
         workOrder.setDescription(workOrder.getDescription());
         workOrder.setLocation(workOrder.getLocation());
-        workOrder.setDate(workOrder.getDate());
+        workOrder.setDateCreated(workOrder.getDateCreated());
         return workOrderRepo.save(workOrder);
     }
 
+    //----------------------------------update----------------------------------
+    public void updateWorkOrderStatus(WorkOrder workOrder, WorkOrderStatus workOrderStatus) {
+        workOrder.setWorkOrderStatus(workOrderStatus);
+
+    }
+
+    public void updateWorkOrderDescription(WorkOrder workOrder, String workOrderDescription)    {
+        workOrder.setDescription(workOrderDescription);
+    }
+
+    public void updateWorkOrderCreatedDate(WorkOrder workOrder, LocalDate date)  {
+        workOrder.setDateCreated(date);
+    }
+
+    public void updateWorkOrderCompletedDate(WorkOrder workOrder, LocalDate date)  {
+        workOrder.setDateCompleted(date);
+    }
+
+    //----------------------------------delete----------------------------------
     public Boolean deleteWorkOrder (Long workOrderId) {
         if(workOrderRepo.findById(workOrderId).isPresent()) {
             workOrderRepo.deleteById(workOrderId);
@@ -53,16 +55,27 @@ public class WorkOrderService {
         }
     }
 
+    //----------------------------------get methods----------------------------------
+
+    public Iterable<WorkOrder> displayAllWorkOrders (){
+        return workOrderRepo.findAll();
+    }
+
+    public WorkOrder findWorkOrderById(Long workOrderId){
+        WorkOrder workOrder = workOrderRepo.findById(workOrderId).get();
+        if (workOrder == null) {
+            return workOrder;
+        }
+        else{
+            return null;
+        }
+    }
+
     public Iterable<WorkOrder> findWorkOrdersByStatus(WorkOrderStatus workOrderStatus)  {
         return workOrderRepo.findWorkOrdersByWorkOrderStatus(workOrderStatus);
     }
 
-    public void updateWorkOrderStatus(WorkOrder workOrder, WorkOrderStatus workOrderStatus) {
-         workOrder.setWorkOrderStatus(workOrderStatus);
-    }
 
-    public void updateWorkOrderDescription(WorkOrder workOrder, String workOrderDescription)    {
 
-    }
 
 }
