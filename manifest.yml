@@ -1,0 +1,9 @@
+---
+applications:
+  - name: dtv-db
+    memory: 1G
+    instances: 1
+    buildpack: java_buildpack
+    path: target/DtvApp-0.0.1-SNAPSHOT.jar
+    services:
+      - dtv-db

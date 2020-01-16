@@ -27,6 +27,5 @@ public class MyUserDetailsService implements UserDetailsService {
         }catch(UsernameNotFoundException e){
             throw new UsernameNotFoundException("Username or password does not exist", e);
         }
-
     }
 }

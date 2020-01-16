@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-public class ReportConcern {
+public class WorkOrderRequest {
 
     @Id
     @GeneratedValue
@@ -25,11 +25,16 @@ public class ReportConcern {
     private LocalDate date;
     //optional image upload
 
-
-    public ReportConcern() {
+    enum status {
+        OPEN,
+        CLOSED
     }
 
-    public ReportConcern(String firstName, String lastName, String message, String location, LocalDate date) {
+
+    public WorkOrderRequest() {
+    }
+
+    public WorkOrderRequest(String firstName, String lastName, String message, String location, LocalDate date) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.message = message;
@@ -38,7 +43,7 @@ public class ReportConcern {
     }
 
 
-    public ReportConcern(Long id, String firstName, String lastName, String message, String location, LocalDate date) {
+    public WorkOrderRequest(Long id, String firstName, String lastName, String message, String location, LocalDate date) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
