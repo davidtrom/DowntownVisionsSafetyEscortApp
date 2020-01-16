@@ -13,6 +13,13 @@ public class ClientService {
     @Autowired
     private ClientRepo clientRepo;
 
+    public Client addClient (Client client) {
+        client.setFirstName(client.getFirstName());
+        client.setLastName(client.getLastName());
+        client.setEmail(client.getEmail());
+        return clientRepo.save(client);
+    }
+
     public Iterable<String> findAllEmails() {
         ArrayList<String> userEmails = new ArrayList<>();
         Iterable<Client> allClients = clientRepo.findAll();
@@ -30,5 +37,9 @@ public class ClientService {
             }
         }
         return true;
+    }
+
+    public Boolean deleteUserByEmail (String email){
+        return clientRepo.deleteByEmail(email);
     }
 }

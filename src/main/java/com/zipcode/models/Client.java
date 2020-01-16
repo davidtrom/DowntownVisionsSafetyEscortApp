@@ -15,18 +15,24 @@ public class Client {
     String firstName;
     String lastName;
     String email;
+    String website;
+    String businessWebsite;
 
-    public Client(String firstName, String lastName, String email) {
+    public Client(String firstName, String lastName, String email, String website, String businessWebsite) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.website = website;
+        this.businessWebsite = businessWebsite;
     }
 
-    public Client(Long id, String firstName, String lastName, String email) {
+    public Client(Long id, String firstName, String lastName, String email, String website, String businessWebsite) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.website = website;
+        this.businessWebsite = businessWebsite;
     }
 
     public Client () {}
@@ -63,5 +69,21 @@ public class Client {
         if (EmailValidator.validateEmail(email)) {
             this.email = email;
         }
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getBusinessWebsite() {
+        return businessWebsite;
+    }
+
+    public void setBusinessWebsite(String businessWebsite) {
+        this.businessWebsite = businessWebsite;
     }
 }
