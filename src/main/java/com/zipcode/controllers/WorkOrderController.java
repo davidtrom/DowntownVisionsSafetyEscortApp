@@ -16,7 +16,7 @@ public class WorkOrderController {
     @Autowired
     private WorkOrderService workOrderService;
 
-    @PostMapping("/workorders/create")
+    @PostMapping("/create")
     public ResponseEntity createWorkOrder(@RequestBody WorkOrder workOrder)  {
         workOrderService.createWorkOrder(workOrder);
         return new ResponseEntity(HttpStatus.CREATED);
@@ -32,8 +32,8 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderService.findWorkOrderById(workOrderId), HttpStatus.OK);
     }
     
-    @PutMapping("/workorder")
-    public ResponseEntity<WorkOrder> updateWorkOrderStatus(Long  workOrderId, WorkOrderStatus workOrderStatus)    {
+    @PutMapping("/update/")
+    public ResponseEntity<WorkOrder> updateWorkOrderStatus(@RequestBody Long  workOrderId, WorkOrderStatus workOrderStatus)    {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if(workOrder == null)   {
             throw new WorkOrderNotFoundException();
