@@ -23,8 +23,8 @@ public class AmbassadorController {
     }
 
     @PostMapping("/ambassador/create")
-    public ResponseEntity<Boolean> newAmbassador(@RequestBody Ambassador ambassador) {
-        ambassadorService.newAmbassador(ambassador);
+    public ResponseEntity<Boolean> createAmbassador(@RequestBody Ambassador ambassador) {
+        ambassadorService.createAmbassador(ambassador);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -42,7 +42,7 @@ public class AmbassadorController {
         if (!ambassadorService.ambassadorExists(id)) {
             throw new AmbassadorNotFoundException();
         }
-        ambassadorService.updateAmbassador(id, ambassador);
+        ambassadorService.updateAmbassador(ambassador);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
