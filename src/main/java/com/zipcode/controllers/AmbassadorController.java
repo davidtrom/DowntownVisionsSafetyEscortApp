@@ -48,15 +48,20 @@ public class AmbassadorController {
 
     @GetMapping("/ambassador/{id}")
     public ResponseEntity<Ambassador> findById(@PathVariable Long id) {
-        if (!ambassadorService.ambassadorExists(id)) {
+        Ambassador ambassador = ambassadorService.findById(id);
+        if (ambassador == null) {
             throw new AmbassadorNotFoundException();
         }
-        return new ResponseEntity<>(ambassadorService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(ambassador, HttpStatus.OK);
     }
 
     @GetMapping("/ambassadors")
     public ResponseEntity<Iterable<Ambassador>> findAll() {
-        return new ResponseEntity<>(ambassadorService.findAllAmbassadors(), HttpStatus.OK);
+        Iterable<Ambassador> ambassadors = ambassadorService.findAllAmbassadors();
+        if(ambassadors == null) {
+            throw new AmbassadorNotFoundException();
+        }
+        return new ResponseEntity<>(ambassadors, HttpStatus.OK);
     }
 
     @GetMapping("/ambassadors/name/{firstName}")
@@ -76,6 +81,8 @@ public class AmbassadorController {
         }
         return new ResponseEntity<>(ambassadors, HttpStatus.OK);
     }
+
+
 
 
 }

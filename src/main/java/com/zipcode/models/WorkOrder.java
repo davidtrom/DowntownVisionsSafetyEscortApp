@@ -1,15 +1,16 @@
 package com.zipcode.models;
 
 
+import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
-public class WorkOrderRequest {
+public class WorkOrder {
 
     @Id
     @GeneratedValue
@@ -19,37 +20,35 @@ public class WorkOrderRequest {
     @NotNull
     private String lastName;
     @NotNull
-    private String message;
+    private String description;
     @NotNull
     private String location;
-    private LocalDate date;
+    private LocalDate dateCreated = LocalDate.now();
     //optional image upload
+    private WorkOrderStatus workOrderStatus = WorkOrderStatus.OPEN;
+    private LocalDate dateCompleted = null;
 
-    enum status {
-        OPEN,
-        CLOSED
+
+
+
+    public WorkOrder() {
     }
 
-
-    public WorkOrderRequest() {
-    }
-
-    public WorkOrderRequest(String firstName, String lastName, String message, String location, LocalDate date) {
+    public WorkOrder(String firstName, String lastName, String description, String location) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.message = message;
+        this.description = description;
         this.location = location;
-        this.date = date;
     }
 
 
-    public WorkOrderRequest(Long id, String firstName, String lastName, String message, String location, LocalDate date) {
+
+    public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.message = message;
+        this.description = description;
         this.location = location;
-        this.date = date;
     }
 
     public Long getId() {
@@ -76,12 +75,12 @@ public class WorkOrderRequest {
         this.lastName = lastName;
     }
 
-    public String getMessage() {
-        return message;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setDescription(String message) {
+        this.description = message;
     }
 
     public String getLocation() {
@@ -92,11 +91,27 @@ public class WorkOrderRequest {
         this.location = location;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateCreated() {
+        return dateCreated;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateCreated(LocalDate date) {
+        this.dateCreated = date;
+    }
+
+    public WorkOrderStatus getWorkOrderStatus() {
+        return workOrderStatus;
+    }
+
+    public void setWorkOrderStatus(WorkOrderStatus status) {
+        this.workOrderStatus = status;
+    }
+
+    public LocalDate getDateCompleted() {
+        return dateCompleted;
+    }
+
+    public void setDateCompleted(LocalDate dateCompleted) {
+        this.dateCompleted = dateCompleted;
     }
 }

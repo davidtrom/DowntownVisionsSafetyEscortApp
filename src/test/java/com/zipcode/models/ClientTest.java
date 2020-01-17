@@ -14,7 +14,7 @@ public class ClientTest {
 
     @BeforeEach
     void setUp() {
-        testClient = new Client("FirstName", "LastName","myemail@gmail.com");
+        testClient = new Client("FirstName", "LastName","myemail@gmail.com", "www.personalwebsite.com", "www.abusinesswebsite.com");
     }
 
     @Test
@@ -51,6 +51,20 @@ public class ClientTest {
     }
 
     @Test
+    void getWebsite () {
+        String expected = "www.personalwebsite.com";
+        String actual = testClient.getWebsite();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void getBusinessWebsite () {
+        String expected = "www.abusinesswebsite.com";
+        String actual = testClient.getBusinessWebsite();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     void setFirstName() {
         String expected = "NewFirstName";
         testClient.setFirstName(expected);
@@ -81,6 +95,22 @@ public class ClientTest {
         testClient.setEmail(expected);
         String actual = testClient.getEmail();
         Assertions.assertEquals("myemail@gmail.com", actual);
+    }
+
+    @Test
+    void setPersonalWebsite() {
+        String expected = "www.thisismynewwebsite.com";
+        testClient.setWebsite(expected);
+        String actual = testClient.getWebsite();
+        Assertions.assertEquals("www.thisismynewwebsite.com", actual);
+    }
+
+    @Test
+    void setBusinessWebsite() {
+        String expected = "www.thisismynewbusinesswebsite.com";
+        testClient.setBusinessWebsite(expected);
+        String actual = testClient.getBusinessWebsite();
+        Assertions.assertEquals("www.thisismynewbusinesswebsite.com", actual);
     }
 
 }
