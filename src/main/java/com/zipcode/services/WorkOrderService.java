@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class WorkOrderService {
@@ -26,7 +27,18 @@ public class WorkOrderService {
         return workOrderRepo.save(workOrder);
     }
 
-    //----------------------------------update----------------------------------
+    //----------------------------------full update----------------------------------
+
+    public void updateWorkOrder(WorkOrder workOrder)    {
+        workOrder.setFirstName(workOrder.getFirstName());
+        workOrder.setLastName(workOrder.getLastName());
+        workOrder.setDescription(workOrder.getDescription());
+        workOrder.setLocation(workOrder.getLocation());
+
+    }
+
+
+    //----------------------------------partial update----------------------------------
     public void updateWorkOrderStatus(WorkOrder workOrder, WorkOrderStatus workOrderStatus) {
         workOrder.setWorkOrderStatus(workOrderStatus);
 
@@ -34,18 +46,22 @@ public class WorkOrderService {
 
     public void updateWorkOrderDescription(WorkOrder workOrder, String workOrderDescription)    {
         workOrder.setDescription(workOrderDescription);
+        workOrderRepo.save(workOrder);
     }
 
     public void updateWorkOrderCreatedDate(WorkOrder workOrder, LocalDate date)  {
         workOrder.setDateCreated(date);
+        workOrderRepo.save(workOrder);
     }
 
     public void updateWorkOrderCompletedDate(WorkOrder workOrder, LocalDate date)  {
         workOrder.setDateCompleted(date);
+        workOrderRepo.save(workOrder);
     }
 
     public void updateWorkOrderLocation(WorkOrder workOrder, String location)   {
         workOrder.setLocation(location);
+        workOrderRepo.save(workOrder);
     }
 
     //----------------------------------delete----------------------------------
