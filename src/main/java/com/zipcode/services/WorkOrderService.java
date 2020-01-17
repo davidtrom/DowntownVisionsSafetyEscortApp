@@ -44,6 +44,10 @@ public class WorkOrderService {
         workOrder.setDateCompleted(date);
     }
 
+    public void updateWorkOrderLocation(WorkOrder workOrder, String location)   {
+        workOrder.setLocation(location);
+    }
+
     //----------------------------------delete----------------------------------
     public Boolean deleteWorkOrder (Long workOrderId) {
         if(workOrderRepo.findById(workOrderId).isPresent()) {
@@ -73,6 +77,18 @@ public class WorkOrderService {
 
     public Iterable<WorkOrder> findWorkOrdersByStatus(WorkOrderStatus workOrderStatus)  {
         return workOrderRepo.findWorkOrdersByWorkOrderStatus(workOrderStatus);
+    }
+
+    public Iterable<WorkOrder> findWorkOrdersByDateCreated(LocalDate dateCreated)   {
+        return workOrderRepo.findWorkOrdersByDateCreated(dateCreated);
+    }
+
+    public Iterable<WorkOrder> findWorkOrdersByDateCompleted(LocalDate dateCompleted)   {
+        return workOrderRepo.findWorkOrdersByDateCompleted(dateCompleted);
+    }
+
+    public Iterable<WorkOrder> findWorkOrdersByName(String lastName, String firstName)  {
+        return workOrderRepo.findWorkOrdersByLastNameAndFirstName(lastName, firstName);
     }
 
 
