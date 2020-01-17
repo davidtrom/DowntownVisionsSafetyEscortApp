@@ -23,9 +23,8 @@ public class WorkOrder {
     private String description;
     @NotNull
     private String location;
-    private LocalDate dateCreated;
+    private LocalDate dateCreated = LocalDate.now();
     //optional image upload
-    @NotNull
     private WorkOrderStatus workOrderStatus;
     private LocalDate dateCompleted;
 
@@ -35,25 +34,24 @@ public class WorkOrder {
     public WorkOrder() {
     }
 
-    public WorkOrder(String firstName, String lastName, String description, String location, LocalDate date) {
+    public WorkOrder(String firstName, String lastName, String description, String location) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.dateCreated = LocalDate.now();
         this.workOrderStatus = WorkOrderStatus.OPEN;
         this.dateCompleted = null;
     }
 
 
 
-    public WorkOrder(Long id, String firstName, String lastName, String description, String location, LocalDate date) {
+    public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.dateCreated = LocalDate.now();
+        this.workOrderStatus = WorkOrderStatus.OPEN;
         this.dateCompleted = null;
     }
 
