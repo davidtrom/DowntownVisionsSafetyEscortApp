@@ -1,7 +1,7 @@
 package com.zipcode.filters;
 
 
-import com.zipcode.services.userDetails.MyUserDetailsService;
+import com.zipcode.services.MyUserDetailsService;
 import com.zipcode.utility.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,7 +1,9 @@
 package com.zipcode.controllers;
 
 
+import com.zipcode.exceptions.AdminNotFoundException;
 import com.zipcode.models.Admin;
+import com.zipcode.models.dtoModels.AdminRegisterDTO;
 import com.zipcode.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,19 +15,33 @@ import org.springframework.web.bind.annotation.*;
 @ComponentScan("com.zipcode.services")
 public class AdminController {
 
-    @Autowired
+
     private AdminService adminService;
 
+    @Autowired
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+    //----------------------------------create----------------------------------
 
     @PostMapping("/admin/create")
-    public ResponseEntity<Boolean> newAdmin(@RequestBody Admin admin){
+    public ResponseEntity<Admin> newAdmin(@RequestBody AdminRegisterDTO admin){
         return new ResponseEntity<>(adminService.newAdmin(admin), HttpStatus.CREATED);
     }
 
-    @PutMapping("/admin/update/{id}")
-    public ResponseEntity<Boolean> updateAdmin(@PathVariable Long id, @RequestBody Admin admin){
-        return new ResponseEntity<>(adminService.updateAdmin(id, admin), HttpStatus.OK);
-    }
+    //----------------------------------get methods----------------------------------
+
+
+//    @PutMapping("/admin/update/{id}")
+//    public ResponseEntity<Boolean> updateAdminLastName(@PathVariable Long id, @RequestBody String lastName){
+//        Admin admin = adminService.findById(id);
+//        if(admin == null)   {
+//            throw new AdminNotFoundException();
+//        }
+//        adminService.updateAdmin(admin, lastName);
+//        return new ResponseEntity<>(adminService.updateAdmin(id, admin), HttpStatus.OK);
+//    }
 
     @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<Boolean> deleteAdmin(@PathVariable Long id){

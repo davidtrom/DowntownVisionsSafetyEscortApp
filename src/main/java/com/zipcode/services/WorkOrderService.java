@@ -7,52 +7,68 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Service
 public class WorkOrderService {
 
-    @Autowired
 
     private WorkOrderRepo workOrderRepo;
 
+    @Autowired
+    public WorkOrderService(WorkOrderRepo workOrderRepo) {
+        this.workOrderRepo = workOrderRepo;
+    }
+
     //----------------------------------new----------------------------------
-    public WorkOrder createWorkOrder (WorkOrder workOrder) {
+    public void createWorkOrder (WorkOrder workOrder) {
         workOrder.setFirstName(workOrder.getFirstName());
         workOrder.setLastName(workOrder.getLastName());
         workOrder.setDescription(workOrder.getDescription());
         workOrder.setLocation(workOrder.getLocation());
-        workOrder.setDateCreated(workOrder.getDateCreated());
-        return workOrderRepo.save(workOrder);
+        workOrder.setWorkOrderStatus(workOrder.getWorkOrderStatus());
+        workOrder.setDateCompleted(workOrder.getDateCompleted());
+
     }
 
-    //----------------------------------update----------------------------------
+    //----------------------------------full update----------------------------------
+
+    public void updateWorkOrder(WorkOrder workOrder)    {
+        workOrder.setFirstName(workOrder.getFirstName());
+        workOrder.setLastName(workOrder.getLastName());
+        workOrder.setDescription(workOrder.getDescription());
+        workOrder.setLocation(workOrder.getLocation());
+        workOrderRepo.save(workOrder);
+    }
+
+
+    //----------------------------------partial update----------------------------------
     public void updateWorkOrderStatus(WorkOrder workOrder, WorkOrderStatus workOrderStatus) {
         workOrder.setWorkOrderStatus(workOrderStatus);
-
     }
 
     public void updateWorkOrderDescription(WorkOrder workOrder, String workOrderDescription)    {
         workOrder.setDescription(workOrderDescription);
+        workOrderRepo.save(workOrder);
     }
 
     public void updateWorkOrderCreatedDate(WorkOrder workOrder, LocalDate date)  {
         workOrder.setDateCreated(date);
+        workOrderRepo.save(workOrder);
     }
 
     public void updateWorkOrderCompletedDate(WorkOrder workOrder, LocalDate date)  {
         workOrder.setDateCompleted(date);
+        workOrderRepo.save(workOrder);
+    }
+
+    public void updateWorkOrderLocation(WorkOrder workOrder, String location)   {
+        workOrder.setLocation(location);
+        workOrderRepo.save(workOrder);
     }
 
     //----------------------------------delete----------------------------------
-    public Boolean deleteWorkOrder (Long workOrderId) {
-        if(workOrderRepo.findById(workOrderId).isPresent()) {
+    public void deleteWorkOrder (Long workOrderId) {
             workOrderRepo.deleteById(workOrderId);
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     //----------------------------------get methods----------------------------------
@@ -73,6 +89,18 @@ public class WorkOrderService {
 
     public Iterable<WorkOrder> findWorkOrdersByStatus(WorkOrderStatus workOrderStatus)  {
         return workOrderRepo.findWorkOrdersByWorkOrderStatus(workOrderStatus);
+    }
+
+    public Iterable<WorkOrder> findWorkOrdersByDateCreated(LocalDate dateCreated)   {
+        return workOrderRepo.findWorkOrdersByDateCreated(dateCreated);
+    }
+
+    public Iterable<WorkOrder> findWorkOrdersByDateCompleted(LocalDate dateCompleted)   {
+        return workOrderRepo.findWorkOrdersByDateCompleted(dateCompleted);
+    }
+
+    public Iterable<WorkOrder> findWorkOrdersByName(String lastName, String firstName)  {
+        return workOrderRepo.findWorkOrdersByLastNameAndFirstName(lastName, firstName);
     }
 
 

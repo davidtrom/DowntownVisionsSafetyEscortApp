@@ -3,11 +3,10 @@ package com.zipcode.models;
 
 import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class WorkOrder {
@@ -23,38 +22,34 @@ public class WorkOrder {
     private String description;
     @NotNull
     private String location;
-    private LocalDate dateCreated;
+    private LocalDate dateCreated = LocalDate.now();
     //optional image upload
-    @NotNull
-    private WorkOrderStatus workOrderStatus;
-    private LocalDate dateCompleted;
 
+    @OneToMany
+    private List<Ambassador> ambassadorList;
 
+    private WorkOrderStatus workOrderStatus = WorkOrderStatus.OPEN;
+    private LocalDate dateCompleted = null;
 
 
     public WorkOrder() {
     }
 
-    public WorkOrder(String firstName, String lastName, String description, String location, LocalDate date) {
+    public WorkOrder(String firstName, String lastName, String description, String location) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.dateCreated = date;
-        this.workOrderStatus = WorkOrderStatus.OPEN;
-        this.dateCompleted = null;
     }
 
 
 
-    public WorkOrder(Long id, String firstName, String lastName, String description, String location, LocalDate date) {
+    public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.dateCreated = date;
-        this.dateCompleted = null;
     }
 
     public Long getId() {
@@ -119,5 +114,21 @@ public class WorkOrder {
 
     public void setDateCompleted(LocalDate dateCompleted) {
         this.dateCompleted = dateCompleted;
+    }
+
+    public List<Ambassador> getAmbassadorList() {
+        return ambassadorList;
+    }
+
+    public void setAmbassadorList(List<Ambassador> ambassadorList) {
+        this.ambassadorList = ambassadorList;
+    }
+
+    public void assignAmbassador(Ambassador ambassador)    {
+        ambassadorList.add(ambassador);
+    }
+
+    public void removeAmbassador(Ambassador ambassador) {
+        ambassadorList.remove(ambassador);
     }
 }
