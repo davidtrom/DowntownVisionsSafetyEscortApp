@@ -40,7 +40,7 @@ public class WorkOrder {
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.dateCreated = date;
+        this.dateCreated = LocalDate.now();
         this.workOrderStatus = WorkOrderStatus.OPEN;
         this.dateCompleted = null;
     }
@@ -53,7 +53,7 @@ public class WorkOrder {
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.dateCreated = date;
+        this.dateCreated = LocalDate.now();
         this.dateCompleted = null;
     }
 

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/workOrders")
+@RequestMapping("/work-orders")
 public class WorkOrderController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrderService.findWorkOrderById(workOrderId), HttpStatus.OK);
     }
     
-    @PutMapping("/{workOrderId}/updateStatus/")
+    @PutMapping("/{workOrderId}/update-status/")
     public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long  workOrderId, @RequestBody WorkOrderStatus workOrderStatus)    {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if(workOrder == null)   {
@@ -45,7 +45,7 @@ public class WorkOrderController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping("/{workOrderId}/updateDescription")
+    @PutMapping("/{workOrderId}/update-description")
     public ResponseEntity<WorkOrder> updateWorkOrderDescription(@PathVariable Long workOrderId, @RequestBody String workOrderDescription)   {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if(workOrder == null)   {
@@ -55,7 +55,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/workOrderByStatus")
+    @GetMapping("/work-order-by-status")
     public ResponseEntity <Iterable<WorkOrder>> findWorkOrdersByStatus( WorkOrderStatus workOrderStatus)   {
         Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByStatus(workOrderStatus);
         if(workOrders == null)  {
@@ -64,7 +64,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrders, HttpStatus.OK);
     }
 
-    @PutMapping("/{workOrderId}/updateCreatedDate")
+    @PutMapping("/{workOrderId}/update-created-date")
     public ResponseEntity<WorkOrder> updateWorkOrderCreatedDate(@PathVariable Long workOrderId, @RequestBody LocalDate date)    {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if(workOrder == null)   {
@@ -74,7 +74,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/{workOrderId}/updateCompletedDate")
+    @PutMapping("/{workOrderId}/update-completed-date")
     public ResponseEntity<WorkOrder> updateWorkOrderCompletedDate(@PathVariable Long workOrderId, @RequestBody LocalDate date)  {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if(workOrder == null)   {
