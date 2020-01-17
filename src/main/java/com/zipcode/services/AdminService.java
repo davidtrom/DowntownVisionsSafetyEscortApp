@@ -2,7 +2,7 @@ package com.zipcode.services;
 
 import com.zipcode.models.Admin;
 import com.zipcode.repositories.AdminRepo;
-import com.zipcode.utility.authentication.PasswordValidator;
+import com.zipcode.utility.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;

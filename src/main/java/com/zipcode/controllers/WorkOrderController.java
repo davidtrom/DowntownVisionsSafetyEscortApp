@@ -80,7 +80,7 @@ public class WorkOrderController {
     }
 
     @GetMapping("/{ambassadorId}")
-    public ResponseEntity<Iterable<Ambassador> findWorkOrdersByAmbassador(Long ambassadorId, Long workorderId)    {
+    public ResponseEntity<Iterable<Ambassador>> findWorkOrdersByAmbassador(Long ambassadorId, Long workorderId)    {
         Ambassador ambassador = ambassadorService.findById(ambassadorId);
         if(ambassador == null)  {
             throw new AmbassadorNotFoundException();
@@ -89,9 +89,7 @@ public class WorkOrderController {
         if (workOrder == null) {
             throw new WorkOrderNotFoundException();
         }
-
-
-        return new ResponseEntity<Iterable<Ambassador>>(ambassadorService.findAmbassadorsByWorkOrder(workOrder));
+        return new ResponseEntity<Iterable<Ambassador>>(ambassadorService.findAmbassadorsByWorkOrder(workOrder), HttpStatus.OK);
     }
 
 
@@ -122,12 +120,12 @@ public class WorkOrderController {
     //----------------------------------partial update methods----------------------------------
 
     @PutMapping("/{workOrderId}/update-status/")
-    public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long workOrderId, @RequestBody WorkOrder workOrder) {
+    public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long workOrderId, @RequestBody WorkOrderStatus workOrderStatus) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
-        if (workOrder == null) {
+        if(workOrder == null)   {
             throw new WorkOrderNotFoundException();
         }
-        workOrderService.updateWorkOrderStatus(workOrder, workOrder);
+        workOrderService.updateWorkOrderStatus(workOrder, workOrderStatus);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
