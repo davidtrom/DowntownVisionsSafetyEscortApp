@@ -25,8 +25,8 @@ public class WorkOrder {
     private String location;
     private LocalDate dateCreated = LocalDate.now();
     //optional image upload
-    private WorkOrderStatus workOrderStatus;
-    private LocalDate dateCompleted;
+    private WorkOrderStatus workOrderStatus = WorkOrderStatus.OPEN;
+    private LocalDate dateCompleted = null;
 
 
 
@@ -39,8 +39,6 @@ public class WorkOrder {
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.workOrderStatus = WorkOrderStatus.OPEN;
-        this.dateCompleted = null;
     }
 
 
@@ -51,8 +49,6 @@ public class WorkOrder {
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.workOrderStatus = WorkOrderStatus.OPEN;
-        this.dateCompleted = null;
     }
 
     public Long getId() {

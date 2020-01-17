@@ -24,6 +24,8 @@ public class WorkOrderService {
         workOrder.setDescription(workOrder.getDescription());
         workOrder.setLocation(workOrder.getLocation());
         workOrder.setDateCreated(workOrder.getDateCreated());
+        workOrder.setWorkOrderStatus(workOrder.getWorkOrderStatus());
+        workOrder.setDateCompleted(workOrder.getDateCompleted());
         return workOrderRepo.save(workOrder);
     }
 
