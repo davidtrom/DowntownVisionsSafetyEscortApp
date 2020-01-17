@@ -39,18 +39,20 @@ public class AdminService {
     }
 
     //update
-    public Boolean updateAdmin(Long id, Admin admin){
-        if(adminRepo.existsById(id)){
-            Admin updateAdmin = findById(id);
-            updateAdmin.setFirstName(admin.getFirstName());
-            updateAdmin.setLastName(admin.getLastName());
-            updateAdmin.setUsername(admin.getUsername());
-            updateAdmin.setPassword(admin.getPassword());
-            adminRepo.save(updateAdmin);
-            return true;
-        }
-        return false;
-    }
+//    public Boolean updateAdminLastName(Admin admin, String lastName)    {
+//        admin.setLastName(lastName);
+//
+//
+//            Admin updateAdmin = findById(id);
+//            updateAdmin.setFirstName(admin.getFirstName());
+//            updateAdmin.setLastName(admin.getLastName());
+//            updateAdmin.setUsername(admin.getUsername());
+//            updateAdmin.setPassword(admin.getPassword());
+//            adminRepo.save(updateAdmin);
+//            return true;
+//        }
+//        return false;
+//    }
 
     //delete
     public Boolean deleteAdmin(Long id){

@@ -14,4 +14,5 @@ public interface WorkOrderRepo extends CrudRepository<WorkOrder, Long> {
     Iterable<WorkOrder> findWorkOrdersByDateCreated(LocalDate dateCreated);
     Iterable<WorkOrder> findWorkOrdersByDateCompleted(LocalDate dateCompleted);
     Iterable<WorkOrder> findWorkOrdersByLastNameAndFirstName(String lastName, String firstName);
+
 }
