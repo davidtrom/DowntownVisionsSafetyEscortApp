@@ -17,13 +17,7 @@ public class AmbassadorRequestService {
 
     //new
     public AmbassadorRequest createRequest(AmbassadorRequest ambassadorRequest) {
-        AmbassadorRequest newAmbassadorRequest = new AmbassadorRequest();
-        newAmbassadorRequest.setFirstName(ambassadorRequest.getFirstName());
-        newAmbassadorRequest.setLastName(ambassadorRequest.getLastName());
-        newAmbassadorRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
-        newAmbassadorRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
-        newAmbassadorRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
-        return ambassadorRequestRepo.save(newAmbassadorRequest);
+        return ambassadorRequestRepo.save(ambassadorRequest);
     }
 
     //update

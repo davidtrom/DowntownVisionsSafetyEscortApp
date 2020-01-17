@@ -43,7 +43,7 @@ public class AmbassadorRequest {
     public AmbassadorRequest() {
     }
 
-    public AmbassadorRequest(String firstName, String lastName, String pickUpLocation, String dropOffLocation, String phoneNumber, String email) {
+    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String email, String pickUpLocation, String dropOffLocation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pickUpLocation = pickUpLocation;
@@ -52,7 +52,7 @@ public class AmbassadorRequest {
         this.email = email;
     }
 
-    public AmbassadorRequest(String firstName, String lastName, String pickUpLocation, String dropOffLocation, String phoneNumber) {
+    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String pickUpLocation, String dropOffLocation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

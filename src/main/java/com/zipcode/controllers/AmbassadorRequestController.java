@@ -1,6 +1,5 @@
 package com.zipcode.controllers;
 
-import com.zipcode.exceptions.AmbassadorNotFoundException;
 import com.zipcode.exceptions.AmbassadorRequestNotFoundException;
 import com.zipcode.models.AmbassadorRequest;
 import com.zipcode.services.AmbassadorRequestService;
@@ -10,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/ambassadorRequests")
+@RequestMapping("/ambassador-requests")
 public class AmbassadorRequestController {
 
     @Autowired
