@@ -1,4 +1,4 @@
-package com.zipcode.services.userDetails;
+package com.zipcode.services;
 
 
 import com.zipcode.models.Admin;

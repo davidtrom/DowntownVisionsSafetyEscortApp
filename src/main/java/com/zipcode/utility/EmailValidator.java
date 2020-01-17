@@ -1,4 +1,4 @@
-package com.zipcode.utility.authentication;
+package com.zipcode.utility;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
