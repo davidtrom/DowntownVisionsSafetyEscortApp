@@ -3,6 +3,7 @@ package com.zipcode.controllers;
 
 import com.zipcode.exceptions.AdminNotFoundException;
 import com.zipcode.models.Admin;
+import com.zipcode.models.dtoModels.AdminRegisterDTO;
 import com.zipcode.services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,7 +26,7 @@ public class AdminController {
     //----------------------------------create----------------------------------
 
     @PostMapping("/admin/create")
-    public ResponseEntity<Boolean> newAdmin(@RequestBody Admin admin){
+    public ResponseEntity<Admin> newAdmin(@RequestBody AdminRegisterDTO admin){
         return new ResponseEntity<>(adminService.newAdmin(admin), HttpStatus.CREATED);
     }
 
