@@ -5,18 +5,21 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
-public class RequestAmbassador {
-    //RequestAmbassador Fields
+public class AmbassadorRequest {
+    //AmbassadorRequest Fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
     @NotBlank(message = "Please enter a valid first name")
-    private String name;
+    private String firstName;
+    @NotBlank(message = "Please enter a valid last name")
+    private String lastName;
 
     //The city, state, and zip will all be in Wilmington.  We need a way to double check people are in the designated zone.
 
@@ -32,19 +35,29 @@ public class RequestAmbassador {
     @NotNull
     @NotBlank(message = "Please enter a valid email")
     private String email;
-    private Date date;
+    private LocalDate date = LocalDate.now();
     private Long ambassadorId;
 
-    public RequestAmbassador() {
+
+
+    public AmbassadorRequest() {
     }
 
-    public RequestAmbassador(@NotBlank(message = "Please enter a valid first name") String name, @NotNull String pickUpLocation, @NotBlank(message = "PLease enter a valid destination address") @NotNull String dropOffLocation, @NotNull @NotBlank(message = "Please enter a valid phone number") String phoneNumber, @Email @NotNull @NotBlank(message = "Please enter a valid email") String email, Date date) {
-        this.name = name;
+    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String email, String pickUpLocation, String dropOffLocation) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.pickUpLocation = pickUpLocation;
         this.dropOffLocation = dropOffLocation;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.date = date;
+    }
+
+    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String pickUpLocation, String dropOffLocation) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.pickUpLocation = pickUpLocation;
+        this.dropOffLocation = dropOffLocation;
     }
 
     public Long getId() {
@@ -55,13 +68,17 @@ public class RequestAmbassador {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = firstName;
     }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public String getPickUpLocation() {
         return pickUpLocation;
@@ -95,12 +112,8 @@ public class RequestAmbassador {
         this.email = email;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public Long getAmbassadorId() {
