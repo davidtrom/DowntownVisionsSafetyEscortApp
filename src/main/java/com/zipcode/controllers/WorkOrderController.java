@@ -19,11 +19,16 @@ public class WorkOrderController {
     @Autowired
     private WorkOrderService workOrderService;
 
+
+    //----------------------------------create----------------------------------
+
     @PostMapping("/create")
     public ResponseEntity createWorkOrder(@RequestBody WorkOrder workOrder)  {
         workOrderService.createWorkOrder(workOrder);
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    //----------------------------------get methods----------------------------------
 
     @GetMapping
     public ResponseEntity<Iterable<WorkOrder>> displayAllWorkOrders(){
@@ -31,10 +36,50 @@ public class WorkOrderController {
     }
 
     @GetMapping("/{workOrderId}")
-    public ResponseEntity<WorkOrder> displayOneWorkOrder (@PathVariable Long workOrderId){
+    public ResponseEntity<WorkOrder> findWorkOrderById (@PathVariable Long workOrderId){
         return new ResponseEntity<>(workOrderService.findWorkOrderById(workOrderId), HttpStatus.OK);
     }
-    
+
+    @GetMapping("/work-orders-by-status")
+    public ResponseEntity <Iterable<WorkOrder>> findWorkOrdersByStatus( WorkOrderStatus workOrderStatus) {
+        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByStatus(workOrderStatus);
+        if(workOrders == null)  {
+            throw new WorkOrderNotFoundException();
+        }
+        return new ResponseEntity<>(workOrders, HttpStatus.OK);
+    }
+
+    @GetMapping("/work-orders-by-date-created")
+    public ResponseEntity <Iterable<WorkOrder>> findWorkOrdersByDateCreated( LocalDate dateCreated) {
+        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByDateCreated(dateCreated);
+        if (workOrders == null) {
+            throw new WorkOrderNotFoundException();
+        }
+        return new ResponseEntity<>(workOrders, HttpStatus.OK);
+    }
+
+    @GetMapping("/work-orders-by-date-completed")
+    public ResponseEntity <Iterable<WorkOrder>> findWorkOrdersByDateCompleted( LocalDate dateCompleted) {
+        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByDateCompleted(dateCompleted);
+        if (workOrders == null) {
+            throw new WorkOrderNotFoundException();
+        }
+        return new ResponseEntity<>(workOrders, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/work-orders-by-name")
+    public ResponseEntity<Iterable<WorkOrder>> findWorkOrdersByName(String lastname, String firstName)  {
+        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByName(lastname, firstName);
+        if(workOrders == null)  {
+            throw new WorkOrderNotFoundException();
+        }
+        return new ResponseEntity<>(workOrders, HttpStatus.OK);
+    }
+
+
+    //----------------------------------update methods----------------------------------
+
     @PutMapping("/{workOrderId}/update-status/")
     public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long  workOrderId, @RequestBody WorkOrderStatus workOrderStatus)    {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
@@ -55,15 +100,6 @@ public class WorkOrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/work-order-by-status")
-    public ResponseEntity <Iterable<WorkOrder>> findWorkOrdersByStatus( WorkOrderStatus workOrderStatus)   {
-        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByStatus(workOrderStatus);
-        if(workOrders == null)  {
-            throw new WorkOrderNotFoundException();
-        }
-        return new ResponseEntity<>(workOrders, HttpStatus.OK);
-    }
-
     @PutMapping("/{workOrderId}/update-created-date")
     public ResponseEntity<WorkOrder> updateWorkOrderCreatedDate(@PathVariable Long workOrderId, @RequestBody LocalDate date)    {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
@@ -82,6 +118,17 @@ public class WorkOrderController {
         }
         workOrderService.updateWorkOrderCompletedDate(workOrder, date);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{workOrderId}/update-location")
+    public ResponseEntity<WorkOrder> updateWorkOrderLocation(@PathVariable Long workOrderId, @RequestBody String location)  {
+        WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
+        if(workOrder == null)   {
+            throw new WorkOrderNotFoundException();
+        }
+        workOrderService.updateWorkOrderLocation(workOrder, location);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
 
