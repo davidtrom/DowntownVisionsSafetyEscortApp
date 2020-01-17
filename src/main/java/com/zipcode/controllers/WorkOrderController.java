@@ -25,7 +25,8 @@ public class WorkOrderController {
     //----------------------------------create----------------------------------
 
     @PostMapping("/create")
-    public ResponseEntity<WorkOrder> createWorkOrder(@RequestBody WorkOrder workOrder)  {
+
+    public ResponseEntity<WorkOrder> createWorkOrder(@RequestBody WorkOrder workOrder) {
         workOrderService.createWorkOrder(workOrder);
         return new ResponseEntity(HttpStatus.CREATED);
     }
