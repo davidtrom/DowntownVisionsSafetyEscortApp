@@ -1,34 +1,39 @@
 package com.zipcode.controllers;
 
+import com.zipcode.exceptions.AmbassadorNotFoundException;
 import com.zipcode.exceptions.WorkOrderNotFoundException;
+import com.zipcode.models.Ambassador;
 import com.zipcode.models.WorkOrder;
 import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.services.AmbassadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.zipcode.services.WorkOrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/work-orders")
 public class WorkOrderController {
 
-    @Autowired
-    private WorkOrderService workOrderService;
 
+    private WorkOrderService workOrderService;
+    private AmbassadorService ambassadorService;
+
+    @Autowired
+    public WorkOrderController(WorkOrderService workOrderService, AmbassadorService ambassadorService) {
+        this.workOrderService = workOrderService;
+        this.ambassadorService = ambassadorService;
+    }
 
     //----------------------------------create----------------------------------
 
     @PostMapping("/create")
-
     public ResponseEntity<WorkOrder> createWorkOrder(@RequestBody WorkOrder workOrder) {
         workOrderService.createWorkOrder(workOrder);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     //----------------------------------get methods----------------------------------
@@ -40,6 +45,10 @@ public class WorkOrderController {
 
     @GetMapping("/{workOrderId}")
     public ResponseEntity<WorkOrder> findWorkOrderById(@PathVariable Long workOrderId) {
+        WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
+        if(workOrder == null)   {
+            throw new WorkOrderNotFoundException();
+        }
         return new ResponseEntity<>(workOrderService.findWorkOrderById(workOrderId), HttpStatus.OK);
     }
 
@@ -70,10 +79,25 @@ public class WorkOrderController {
         return new ResponseEntity<>(workOrders, HttpStatus.OK);
     }
 
+    @GetMapping("/{ambassadorId}")
+    public ResponseEntity<Iterable<Ambassador>> findWorkOrdersByAmbassador(Long ambassadorId, Long workorderId)    {
+        Ambassador ambassador = ambassadorService.findById(ambassadorId);
+        if(ambassador == null)  {
+            throw new AmbassadorNotFoundException();
+        }
+        WorkOrder workOrder = workOrderService.findWorkOrderById(workorderId);
+        if (workOrder == null) {
+            throw new WorkOrderNotFoundException();
+        }
+        return new ResponseEntity<Iterable<Ambassador>>(ambassadorService.findAmbassadorsByWorkOrder(workOrder), HttpStatus.OK);
+    }
+
+
+
 
     @GetMapping("/work-orders-by-name")
-    public ResponseEntity<Iterable<WorkOrder>> findWorkOrdersByName(String lastname, String firstName) {
-        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByName(lastname, firstName);
+    public ResponseEntity<Iterable<WorkOrder>> findWorkOrdersByName(String lastName, String firstName) {
+        Iterable<WorkOrder> workOrders = workOrderService.findWorkOrdersByName(lastName, firstName);
         if (workOrders == null) {
             throw new WorkOrderNotFoundException();
         }
@@ -95,17 +119,18 @@ public class WorkOrderController {
 
     //----------------------------------partial update methods----------------------------------
 
-    @PatchMapping("/{workOrderId}/update-status/")
+    @PutMapping("/{workOrderId}/update-status/")
     public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long workOrderId, @RequestBody WorkOrderStatus workOrderStatus) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
-        if (workOrder == null) {
+        if(workOrder == null)   {
             throw new WorkOrderNotFoundException();
         }
         workOrderService.updateWorkOrderStatus(workOrder, workOrderStatus);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("/{workOrderId}/update-description")
+
+    @PutMapping("/{workOrderId}/update-description")
     public ResponseEntity<WorkOrder> updateWorkOrderDescription(@PathVariable Long workOrderId, @RequestBody String workOrderDescription) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if (workOrder == null) {
@@ -116,7 +141,7 @@ public class WorkOrderController {
     }
 
 
-    @PatchMapping("/{workOrderId}/update-created-date")
+    @PutMapping("/{workOrderId}/update-created-date")
     public ResponseEntity<WorkOrder> updateWorkOrderCreatedDate(@PathVariable Long workOrderId, @RequestBody LocalDate date) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if (workOrder == null) {
@@ -126,7 +151,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("/{workOrderId}/update-completed-date")
+    @PutMapping("/{workOrderId}/update-completed-date")
     public ResponseEntity<WorkOrder> updateWorkOrderCompletedDate(@PathVariable Long workOrderId, @RequestBody LocalDate date) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if (workOrder == null) {
@@ -136,7 +161,7 @@ public class WorkOrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("/{workOrderId}/update-location")
+    @PutMapping("/{workOrderId}/update-location")
     public ResponseEntity<WorkOrder> updateWorkOrderLocation(@PathVariable Long workOrderId, @RequestBody String location) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if (workOrder == null) {
@@ -144,8 +169,19 @@ public class WorkOrderController {
         }
         workOrderService.updateWorkOrderLocation(workOrder, location);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
+
+    @DeleteMapping("/{workOrderId}/delete")
+    public ResponseEntity<WorkOrder> deleteWorkOrder(@PathVariable Long workOrderId)    {
+        WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
+        if(workOrder == null)   {
+            throw new WorkOrderNotFoundException();
+        }
+        workOrderService.deleteWorkOrder(workOrderId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 
 
 }

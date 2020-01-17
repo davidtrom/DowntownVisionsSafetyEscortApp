@@ -6,48 +6,16 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.zipcode</groupId>
 	<artifactId>DtvApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DTVApp</name>
+	<name>DtvApp</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 	<dependencies>
-
-<!--		<dependency>-->
-<!--			<groupId>org.postgresql</groupId>-->
-<!--			<artifactId>postgresql</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
-
-=======
-	<pluginRepositories>
-		<pluginRepository>
-			<id>repository.spring.release</id>
-			<name>Spring GA Repository</name>
-			<url>https://repo.spring.io/plugins-release/</url>
-		</pluginRepository>
-	</pluginRepositories>
-=======
->>>>>>> dev
-	<dependencies>
-		<!--      <dependency>-->
-		<!--         <groupId>org.postgresql</groupId>-->
-		<!--         <artifactId>postgresql</artifactId>-->
-		<!--         <scope>runtime</scope>-->
-		<!--      </dependency>-->
-<<<<<<< HEAD
->>>>>>> dev
-=======
->>>>>>> dev
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -62,42 +30,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-<<<<<<< HEAD
-<!--		<dependency>-->
-<<<<<<< HEAD
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-devtools</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--			<optional>true</optional>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-=======
->>>>>>> dev
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-core</artifactId>-->
-<!--		</dependency>-->
-=======
-		<!--      <dependency>-->
-		<!--         <groupId>org.springframework.security</groupId>-->
-		<!--         <artifactId>spring-security-core</artifactId>-->
-		<!--      </dependency>-->
->>>>>>> dev
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>5.2.1.RELEASE</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>5.2.1.RELEASE</version>
 		</dependency>
-		<!--      <dependency>-->
-		<!--         <groupId>org.springframework.boot</groupId>-->
-		<!--         <artifactId>spring-boot-starter-actuator</artifactId>-->
-		<!--      </dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -107,148 +49,16 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-<<<<<<< HEAD
-<!--		<dependency>-->
-<!--			<groupId>javax.xml.bind</groupId>-->
-<!--			<artifactId>jaxb-api</artifactId>-->
-<!--			<version>2.3.0</version>-->
-<!--		</dependency>-->
-<<<<<<< HEAD
-
-<!--		<dependency>-->
-<!--			<groupId>com.h2database</groupId>-->
-<!--			<artifactId>h2</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--		</dependency>-->
-
-		<dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-=======
-=======
-		<!--      <dependency>-->
-		<!--         <groupId>javax.xml.bind</groupId>-->
-		<!--         <artifactId>jaxb-api</artifactId>-->
-		<!--         <version>2.3.0</version>-->
-		<!--      </dependency>-->
->>>>>>> dev
-		<!--      <dependency>-->
-		<!--         <groupId>com.h2database</groupId>-->
-		<!--         <artifactId>h2</artifactId>-->
-		<!--         <scope>runtime</scope>-->
-		<!--      </dependency>-->
-<<<<<<< HEAD
->>>>>>> dev
-
-<!--		<dependency>-->
-<!--			<groupId>javax.servlet</groupId>-->
-<!--			<artifactId>jstl</artifactId>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.apache.tomcat.embed</groupId>-->
-<!--			<artifactId>tomcat-embed-jasper</artifactId>-->
-<!--			&lt;!&ndash;<scope>provided</scope>&ndash;&gt;-->
-<!--		</dependency>-->
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
-<!--		<dependency>-->
-<!--			<groupId>javax.validation</groupId>-->
-<!--			<artifactId>validation-api</artifactId>-->
-<!--			<version>2.0.0.Final</version>-->
-<!--		</dependency>-->
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
-<!--		<dependency>-->
-<!--			<groupId>org.hibernate.validator</groupId>-->
-<!--			<artifactId>hibernate-validator</artifactId>-->
-<!--			<version>6.0.2.Final</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.hibernate.validator</groupId>-->
-<!--			<artifactId>hibernate-validator-annotation-processor</artifactId>-->
-<!--			<version>6.0.2.Final</version>-->
-<!--		</dependency>-->
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
-<!--		<dependency>-->
-<!--			<groupId>javax.el</groupId>-->
-<!--			<artifactId>javax.el-api</artifactId>-->
-<!--			<version>3.0.0</version>-->
-<!--		</dependency>-->
-<<<<<<< HEAD
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-=======
-=======
-		<!--      <dependency>-->
-		<!--         <groupId>javax.servlet</groupId>-->
-		<!--         <artifactId>jstl</artifactId>-->
-		<!--      </dependency>-->
-		<!--      <dependency>-->
-		<!--         <groupId>org.apache.tomcat.embed</groupId>-->
-		<!--         <artifactId>tomcat-embed-jasper</artifactId>-->
-		<!--         &lt;!&ndash;<scope>provided</scope>&ndash;&gt;-->
-		<!--      </dependency>-->
-		<!--      <dependency>-->
-		<!--         <groupId>javax.validation</groupId>-->
-		<!--         <artifactId>validation-api</artifactId>-->
-		<!--         <version>2.0.0.Final</version>-->
-		<!--      </dependency>-->
-		<!--      <dependency>-->
-		<!--         <groupId>org.hibernate.validator</groupId>-->
-		<!--         <artifactId>hibernate-validator</artifactId>-->
-		<!--         <version>6.0.2.Final</version>-->
-		<!--      </dependency>-->
-		<!--      <dependency>-->
-		<!--         <groupId>org.hibernate.validator</groupId>-->
-		<!--         <artifactId>hibernate-validator-annotation-processor</artifactId>-->
-		<!--         <version>6.0.2.Final</version>-->
-		<!--      </dependency>-->
-		<!--      <dependency>-->
-		<!--         <groupId>javax.el</groupId>-->
-		<!--         <artifactId>javax.el-api</artifactId>-->
-		<!--         <version>3.0.0</version>-->
-		<!--      </dependency>-->
->>>>>>> dev
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-		<!--<dependency>
-=======
-		<dependency>
->>>>>>> dev
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-dependencies</artifactId>
-			<version>Finchley.SR1</version>
-			<type>pom</type>
-			<scope>import</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 			<version>2.2.1.RELEASE</version>
 		</dependency>
-<<<<<<< HEAD
->>>>>>> dev
-
-=======
->>>>>>> dev
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cloud-connectors</artifactId>
@@ -265,24 +75,6 @@
 			<version>2.2.2.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.1.0</version>
-            <scope>test</scope>
-        </dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-websocket</artifactId>
-			<version>2.1.6.RELEASE</version>
-		</dependency>
-
-
-    </dependencies>
-    
-=======
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -296,13 +88,12 @@
 			<version>4.0.5.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 	</dependencies>
->>>>>>> dev
-=======
-	</dependencies>
->>>>>>> dev
 	<build>
 		<resources>
 			<resource>
@@ -316,31 +107,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<finalName>${project.name}-cf</finalName>
-				</configuration>
 			</plugin>
-			<!--         <plugin>-->
-			<!--            <groupId>org.apache.maven.plugins</groupId>-->
-			<!--            <artifactId>maven-compiler-plugin</artifactId>-->
-			<!--            <configuration>-->
-			<!--               <excludes>-->
-			<!--                  <exclude>**/cloud/config/*.java</exclude>-->
-			<!--               </excludes>-->
-			<!--            </configuration>-->
-			<!--         </plugin>-->
-			<!--         <plugin>-->
-			<!--            <groupId>org.apache.maven.plugins</groupId>-->
-			<!--            <artifactId>maven-dependency-plugin</artifactId>-->
-			<!--            <version>3.0.1</version>-->
-			<!--            <executions>-->
-			<!--               <execution>-->
-			<!--                  <id>copy-dependencies</id>-->
-			<!--                  <phase>package</phase>-->
-			<!--                  <goals><goal>copy-dependencies</goal></goals>-->
-			<!--               </execution>-->
-			<!--            </executions>-->
-			<!--         </plugin>-->
 		</plugins>
 	</build>
 </project>

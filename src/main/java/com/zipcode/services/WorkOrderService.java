@@ -7,26 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Optional;
 
 @Service
 public class WorkOrderService {
 
-    @Autowired
 
     private WorkOrderRepo workOrderRepo;
 
+    @Autowired
+    public WorkOrderService(WorkOrderRepo workOrderRepo) {
+        this.workOrderRepo = workOrderRepo;
+    }
+
     //----------------------------------new----------------------------------
-    public WorkOrder createWorkOrder (WorkOrder workOrder) {
+    public void createWorkOrder (WorkOrder workOrder) {
         workOrder.setFirstName(workOrder.getFirstName());
         workOrder.setLastName(workOrder.getLastName());
         workOrder.setDescription(workOrder.getDescription());
         workOrder.setLocation(workOrder.getLocation());
-        workOrder.setDateCreated(workOrder.getDateCreated());
         workOrder.setWorkOrderStatus(workOrder.getWorkOrderStatus());
         workOrder.setDateCompleted(workOrder.getDateCompleted());
-        return workOrderRepo.save(workOrder);
+
     }
 
     //----------------------------------full update----------------------------------
@@ -36,14 +37,13 @@ public class WorkOrderService {
         workOrder.setLastName(workOrder.getLastName());
         workOrder.setDescription(workOrder.getDescription());
         workOrder.setLocation(workOrder.getLocation());
-
+        workOrderRepo.save(workOrder);
     }
 
 
     //----------------------------------partial update----------------------------------
     public void updateWorkOrderStatus(WorkOrder workOrder, WorkOrderStatus workOrderStatus) {
         workOrder.setWorkOrderStatus(workOrderStatus);
-
     }
 
     public void updateWorkOrderDescription(WorkOrder workOrder, String workOrderDescription)    {
@@ -67,14 +67,8 @@ public class WorkOrderService {
     }
 
     //----------------------------------delete----------------------------------
-    public Boolean deleteWorkOrder (Long workOrderId) {
-        if(workOrderRepo.findById(workOrderId).isPresent()) {
+    public void deleteWorkOrder (Long workOrderId) {
             workOrderRepo.deleteById(workOrderId);
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     //----------------------------------get methods----------------------------------

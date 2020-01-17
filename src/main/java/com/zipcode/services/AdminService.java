@@ -1,6 +1,7 @@
 package com.zipcode.services;
 
 import com.zipcode.models.Admin;
+import com.zipcode.models.dtoModels.AdminRegisterDTO;
 import com.zipcode.repositories.AdminRepo;
 import com.zipcode.utility.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AdminService {
 
 
     //new
-    public Admin newAdmin (Admin admin){
+    public Admin newAdmin (AdminRegisterDTO admin){
         if(!adminRepo.existsByUsername(admin.getUsername()) && PasswordValidator.validatePassword(admin.getPassword())){
             Admin newAdmin = new Admin();
             newAdmin.setFirstName(admin.getFirstName());
@@ -70,4 +71,6 @@ public class AdminService {
     public Iterable<Admin> findAll(){
         return adminRepo.findAll();
     }
+
+
 }
