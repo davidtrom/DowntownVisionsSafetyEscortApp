@@ -1,6 +1,7 @@
 package com.zipcode.services;
 
 import com.zipcode.models.Ambassador;
+import com.zipcode.models.WorkOrder;
 import com.zipcode.repositories.AmbassadorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -78,6 +79,15 @@ public class AmbassadorService {
         } else {
             return false;
         }
+    }
+
+    public Iterable<Ambassador> findAmbassadorsByWorkOrder(WorkOrder workOrder) {
+       Iterable<Ambassador> ambassadors = ambassadorRepo.findAmbassadorsByWorkOrder(workOrder);
+       if(ambassadors == null)  {
+           return null;
+       }    else {
+           return ambassadors;
+       }
     }
 
 
