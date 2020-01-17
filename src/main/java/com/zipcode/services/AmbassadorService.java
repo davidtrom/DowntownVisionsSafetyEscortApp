@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AmbassadorService {
 
-    @Autowired
+
     private AmbassadorRepo ambassadorRepo;
 
-    public Boolean newAmbassador(Ambassador ambassador){
+    @Autowired
+    public AmbassadorService(AmbassadorRepo ambassadorRepo) {
+        this.ambassadorRepo = ambassadorRepo;
+    }
+
+    public Boolean createAmbassador(Ambassador ambassador) {
         Ambassador newAmbassador = new Ambassador();
         newAmbassador.setFirstName(ambassador.getFirstName());
         newAmbassador.setLastName(ambassador.getLastName());
@@ -22,41 +27,59 @@ public class AmbassadorService {
         return true;
     }
 
-    public Boolean deleteAmbassador(Long id){
-        if(ambassadorRepo.existsById(id)){
-            ambassadorRepo.deleteById(id);
-            return true;
-        }
-        return false;
+    public void deleteAmbassador(Long id) {
+        ambassadorRepo.deleteById(id);
     }
 
-    public Boolean updateAmbassador(Long id, Ambassador ambassador){
-        if(ambassadorRepo.existsById(id)){
-            Ambassador updateAmbassador = findById(id);
-            updateAmbassador.setFirstName(ambassador.getFirstName());
-            updateAmbassador.setLastName(ambassador.getLastName());
-            updateAmbassador.setPhoneNumber(ambassador.getPhoneNumber());
-            ambassadorRepo.save(updateAmbassador);
-            return true;
-        }
-        return false;
+
+    public void updateAmbassador(Ambassador ambassador) {
+        ambassador.setFirstName(ambassador.getFirstName());
+        ambassador.setLastName(ambassador.getLastName());
+        ambassador.setPhoneNumber(ambassador.getPhoneNumber());
+        ambassadorRepo.save(ambassador);
     }
 
     // GET methods
 
-    public Ambassador findById(Long id){
+    public Ambassador findById(Long id) {
         return ambassadorRepo.findById(id).get();
     }
 
-    public Iterable<Ambassador> findAll(){
+    public Iterable<Ambassador> findAll() {
         return ambassadorRepo.findAll();
     }
 
-    public Ambassador findByFirstName(String firstName) {
-        return ambassadorRepo.findByFirstName(firstName);
+    public Iterable<Ambassador> findAllAmbassadorsByFirstName(String firstName) {
+        Iterable<Ambassador> ambassadors = ambassadorRepo.findAmbassadorsByFirstName(firstName);
+        if (ambassadors == null) {
+            return null;
+        } else {
+            return ambassadors;
+        }
     }
 
-    public Ambassador findByLastName(String lastName) {
-        return ambassadorRepo.findByLastName(lastName);
+    public Iterable<Ambassador> findAllAmbassadorsByLastName(String lastName) {
+        Iterable<Ambassador> ambassadors = ambassadorRepo.findAmbassadorsByLastName(lastName);
+        if (ambassadors == null) {
+            return null;
+        } else {
+            return ambassadors;
+        }
     }
+
+    public Iterable<Ambassador> findAllAmbassadors() {
+        return ambassadorRepo.findAll();
+    }
+
+
+    public Boolean ambassadorExists(Long id) {
+        if (ambassadorRepo.existsById(id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
+
+

@@ -11,12 +11,12 @@
 	<groupId>com.zipcode</groupId>
 	<artifactId>DtvApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DTVApp</name>
+	<name>DtvApp</name>
 	<description>Demo project for Spring Boot</description>
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+<<<<<<< HEAD
 
 	<dependencies>
 
@@ -26,6 +26,21 @@
 <!--			<scope>runtime</scope>-->
 <!--		</dependency>-->
 
+=======
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repository.spring.release</id>
+			<name>Spring GA Repository</name>
+			<url>https://repo.spring.io/plugins-release/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<dependencies>
+		<!--      <dependency>-->
+		<!--         <groupId>org.postgresql</groupId>-->
+		<!--         <artifactId>postgresql</artifactId>-->
+		<!--         <scope>runtime</scope>-->
+		<!--      </dependency>-->
+>>>>>>> dev
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -43,12 +58,15 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 <!--		<dependency>-->
+<<<<<<< HEAD
 <!--			<groupId>org.springframework.boot</groupId>-->
 <!--			<artifactId>spring-boot-devtools</artifactId>-->
 <!--			<scope>runtime</scope>-->
 <!--			<optional>true</optional>-->
 <!--		</dependency>-->
 <!--		<dependency>-->
+=======
+>>>>>>> dev
 <!--			<groupId>org.springframework.security</groupId>-->
 <!--			<artifactId>spring-security-core</artifactId>-->
 <!--		</dependency>-->
@@ -82,6 +100,7 @@
 <!--			<artifactId>jaxb-api</artifactId>-->
 <!--			<version>2.3.0</version>-->
 <!--		</dependency>-->
+<<<<<<< HEAD
 
 <!--		<dependency>-->
 <!--			<groupId>com.h2database</groupId>-->
@@ -94,6 +113,13 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
+=======
+		<!--      <dependency>-->
+		<!--         <groupId>com.h2database</groupId>-->
+		<!--         <artifactId>h2</artifactId>-->
+		<!--         <scope>runtime</scope>-->
+		<!--      </dependency>-->
+>>>>>>> dev
 
 <!--		<dependency>-->
 <!--			<groupId>javax.servlet</groupId>-->
@@ -104,13 +130,19 @@
 <!--			<artifactId>tomcat-embed-jasper</artifactId>-->
 <!--			&lt;!&ndash;<scope>provided</scope>&ndash;&gt;-->
 <!--		</dependency>-->
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 <!--		<dependency>-->
 <!--			<groupId>javax.validation</groupId>-->
 <!--			<artifactId>validation-api</artifactId>-->
 <!--			<version>2.0.0.Final</version>-->
 <!--		</dependency>-->
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 <!--		<dependency>-->
 <!--			<groupId>org.hibernate.validator</groupId>-->
 <!--			<artifactId>hibernate-validator</artifactId>-->
@@ -121,23 +153,52 @@
 <!--			<artifactId>hibernate-validator-annotation-processor</artifactId>-->
 <!--			<version>6.0.2.Final</version>-->
 <!--		</dependency>-->
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 <!--		<dependency>-->
 <!--			<groupId>javax.el</groupId>-->
 <!--			<artifactId>javax.el-api</artifactId>-->
 <!--			<version>3.0.0</version>-->
 <!--		</dependency>-->
+<<<<<<< HEAD
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+=======
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>Finchley.SR1</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+		&lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config &ndash;&gt;
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+			<version>2.2.1.RELEASE</version>
+		</dependency>
+>>>>>>> dev
 
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>5.2.2.RELEASE</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cloud-connectors</artifactId>
+		</dependency>-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -145,6 +206,7 @@
 			<version>2.2.2.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -161,24 +223,53 @@
 
     </dependencies>
     
+=======
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.0.5.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+>>>>>>> dev
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/logback.xml</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
+			<!--<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>${project.name}-cf</finalName>
+				</configuration>
+			</plugin>-->
+
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-compiler-plugin</artifactId>-->
+<!--				<configuration>-->
+<!--					<excludes>-->
+<!--						<exclude>**/cloud/config/*.java</exclude>-->
+<!--					</excludes>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.0.1</version>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals><goal>copy-dependencies</goal></goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.heroku.sdk</groupId>
-				<artifactId>heroku-maven-plugin</artifactId>
-				<version>2.0.15</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

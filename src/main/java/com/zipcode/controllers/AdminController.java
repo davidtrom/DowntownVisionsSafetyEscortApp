@@ -18,7 +18,7 @@ public class AdminController {
 
 
     @PostMapping("/admin/create")
-    public ResponseEntity<Boolean> newAdmin(@RequestBody Admin admin){
+    public ResponseEntity<Admin> newAdmin(@RequestBody Admin admin){
         return new ResponseEntity<>(adminService.newAdmin(admin), HttpStatus.CREATED);
     }
 
