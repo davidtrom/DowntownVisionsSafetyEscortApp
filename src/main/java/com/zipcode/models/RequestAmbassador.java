@@ -16,7 +16,10 @@ public class RequestAmbassador {
     @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
     @NotBlank(message = "Please enter a valid first name")
-    private String name;
+    private String firstName;
+
+    @NotBlank(message = "Please enter a valid first name")
+    private String lastName;
 
     //The city, state, and zip will all be in Wilmington.  We need a way to double check people are in the designated zone.
 
@@ -38,8 +41,9 @@ public class RequestAmbassador {
     public RequestAmbassador() {
     }
 
-    public RequestAmbassador(@NotBlank(message = "Please enter a valid first name") String name, @NotNull String pickUpLocation, @NotBlank(message = "PLease enter a valid destination address") @NotNull String dropOffLocation, @NotNull @NotBlank(message = "Please enter a valid phone number") String phoneNumber, @Email @NotNull @NotBlank(message = "Please enter a valid email") String email, Date date) {
-        this.name = name;
+    public RequestAmbassador(@NotBlank(message = "Please enter a valid first name") String firstName, String lastName, @NotNull String pickUpLocation, @NotBlank(message = "PLease enter a valid destination address") @NotNull String dropOffLocation, @NotNull @NotBlank(message = "Please enter a valid phone number") String phoneNumber, @Email @NotNull @NotBlank(message = "Please enter a valid email") String email, Date date) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.pickUpLocation = pickUpLocation;
         this.dropOffLocation = dropOffLocation;
         this.phoneNumber = phoneNumber;
@@ -55,12 +59,20 @@ public class RequestAmbassador {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPickUpLocation() {

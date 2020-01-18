@@ -26,8 +26,7 @@ public class WorkOrderController {
 
     @PostMapping("/create")
     public ResponseEntity<WorkOrder> createWorkOrder(@RequestBody WorkOrder workOrder)  {
-        workOrderService.createWorkOrder(workOrder);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(workOrderService.createWorkOrder(workOrder), HttpStatus.CREATED);
     }
 
     //----------------------------------get methods----------------------------------
@@ -95,13 +94,13 @@ public class WorkOrderController {
     //----------------------------------partial update methods----------------------------------
 
     @PatchMapping("/{workOrderId}/update-status/")
-    public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long workOrderId, @RequestBody WorkOrderStatus workOrderStatus) {
+    public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long workOrderId) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if (workOrder == null) {
             throw new WorkOrderNotFoundException();
         }
-        workOrderService.updateWorkOrderStatus(workOrder, workOrderStatus);
-        return new ResponseEntity(HttpStatus.OK);
+        workOrderService.updateWorkOrderStatus(workOrder);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/{workOrderId}/update-description")

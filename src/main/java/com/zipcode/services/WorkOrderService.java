@@ -36,14 +36,13 @@ public class WorkOrderService {
         workOrder.setLastName(workOrder.getLastName());
         workOrder.setDescription(workOrder.getDescription());
         workOrder.setLocation(workOrder.getLocation());
-
     }
 
 
     //----------------------------------partial update----------------------------------
-    public void updateWorkOrderStatus(WorkOrder workOrder, WorkOrderStatus workOrderStatus) {
-        workOrder.setWorkOrderStatus(workOrderStatus);
-
+    public void updateWorkOrderStatus(WorkOrder workOrder) {
+        workOrder.setWorkOrderStatus(workOrder.getWorkOrderStatus());
+        workOrderRepo.save(workOrder);
     }
 
     public void updateWorkOrderDescription(WorkOrder workOrder, String workOrderDescription)    {
