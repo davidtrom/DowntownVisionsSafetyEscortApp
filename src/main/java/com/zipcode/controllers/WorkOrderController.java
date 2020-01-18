@@ -119,7 +119,8 @@ public class WorkOrderController {
 
     //----------------------------------partial update methods----------------------------------
 
-    @PutMapping("/{workOrderId}/update-status/")
+
+    @PatchMapping("/{workOrderId}/update-status/")
     public ResponseEntity<WorkOrder> updateWorkOrderStatus(@PathVariable Long workOrderId, @RequestBody WorkOrderStatus workOrderStatus) {
         WorkOrder workOrder = workOrderService.findWorkOrderById(workOrderId);
         if(workOrder == null)   {
