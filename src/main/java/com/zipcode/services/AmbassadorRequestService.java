@@ -20,6 +20,24 @@ public class AmbassadorRequestService {
         return ambassadorRequestRepo.save(ambassadorRequest);
     }
 
+    //get
+
+    public Iterable<AmbassadorRequest> findAll() {
+        return ambassadorRequestRepo.findAll();
+    }
+
+    public AmbassadorRequest findRequestById(Long requestId) {
+        AmbassadorRequest request = ambassadorRequestRepo.findById(requestId).get();
+    }
+
+    public AmbassadorRequest findAllRequestsByFirstName(String firstName) {
+
+    }
+
+    public AmbassadorRequest findAllRequestsByLastName(String lastName) {
+
+    }
+
     //update
     public void updateFirstName(AmbassadorRequest request, String newFirstName) {
         request.setFirstName(newFirstName);
@@ -29,20 +47,17 @@ public class AmbassadorRequestService {
     public void updateLastName(AmbassadorRequest request, String newLastName) {
         request.setLastName(newLastName);
         ambassadorRequestRepo.save(request);
-
     }
 
 
     public void updatePickUpLocation(AmbassadorRequest request, String newPickUpLocation) {
         request.setPickUpLocation(newPickUpLocation);
         ambassadorRequestRepo.save(request);
-
     }
 
     public void updateDropOffLocation(AmbassadorRequest request, String newDropOffLocation) {
         request.setDropOffLocation(newDropOffLocation);
         ambassadorRequestRepo.save(request);
-
     }
 
 
@@ -56,18 +71,5 @@ public class AmbassadorRequestService {
         }
     }
 
-    //get methods
 
-    public Iterable<AmbassadorRequest> displayAllRequests() {
-        return ambassadorRequestRepo.findAll();
-    }
-
-    public AmbassadorRequest findRequestById(Long requestId) {
-        AmbassadorRequest request = ambassadorRequestRepo.findById(requestId).get();
-        if (request == null) {
-            return request;
-        } else {
-            return null;
-        }
-    }
 }

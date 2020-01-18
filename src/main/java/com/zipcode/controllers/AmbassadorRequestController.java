@@ -22,17 +22,38 @@ public class AmbassadorRequestController {
     }
 
     @GetMapping
-    public ResponseEntity<Iterable<AmbassadorRequest>> displayAllAmbassadorRequests(){
-        return new ResponseEntity<>(ambassadorRequestService.displayAllRequests(), HttpStatus.OK);
+    public ResponseEntity<Iterable<AmbassadorRequest>> findAllAmbassadorRequests(){
+        return new ResponseEntity<>(ambassadorRequestService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{requestId}")
-    public ResponseEntity<AmbassadorRequest> displayOneRequest (@PathVariable Long requestId){
-        return new ResponseEntity<>(ambassadorRequestService.findRequestById(requestId), HttpStatus.OK);
+    public ResponseEntity<AmbassadorRequest> findRequestById (@PathVariable Long requestId){
+        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+        if(request == null) {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
+//    @GetMapping("/{firstName}")
+//    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByFirstName (@PathVariable String firstName){
+//        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllRequestsByFirstName(firstName);
+//        if(requests == null) {
+//            throw new AmbassadorRequestNotFoundException();
+//        }
+//        return new ResponseEntity<>(requests, HttpStatus.OK);
+//    }
+//    @GetMapping("/{lastName}")
+//    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable String lastName){
+//        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllRequestsByLastName(lastName);
+//        if(requests == null) {
+//            throw new AmbassadorRequestNotFoundException();
+//        }
+//        return new ResponseEntity<>(requests, HttpStatus.OK);
+//    }
+
     @PutMapping("/{requestId}/update-pickup-location/")
-    public ResponseEntity<AmbassadorRequest> updateWorkOrderStatus(@PathVariable Long requestId, @RequestBody String newPickUpLocation)    {
+    public ResponseEntity<AmbassadorRequest> updatePickUpLocation(@PathVariable Long requestId, @RequestBody String newPickUpLocation)    {
         AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
@@ -49,5 +70,25 @@ public class AmbassadorRequestController {
         }
         ambassadorRequestService.updateDropOffLocation(request, newDropOffLocation);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{requestId}/update-first-name/")
+    public ResponseEntity<AmbassadorRequest> updateFirstName(@PathVariable Long requestId, @RequestBody String newFirstName)    {
+        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+        if(request == null)   {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        ambassadorRequestService.updateFirstName(request, newFirstName);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PutMapping("/{requestId}/update-last-name/")
+    public ResponseEntity<AmbassadorRequest> updateLastName(@PathVariable Long requestId, @RequestBody String newLastName)    {
+        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+        if(request == null)   {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        ambassadorRequestService.updateFirstName(request, newLastName);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
