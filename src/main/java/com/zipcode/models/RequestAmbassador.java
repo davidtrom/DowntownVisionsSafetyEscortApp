@@ -1,12 +1,11 @@
 package com.zipcode.models;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
-import java.util.UUID;
+import java.time.LocalDate;
+
 
 @Entity
 public class RequestAmbassador {
@@ -17,7 +16,6 @@ public class RequestAmbassador {
     private Long id;
     @NotBlank(message = "Please enter a valid first name")
     private String firstName;
-
     @NotBlank(message = "Please enter a valid first name")
     private String lastName;
 
@@ -31,24 +29,26 @@ public class RequestAmbassador {
     @NotNull
     @NotBlank(message = "Please enter a valid phone number")
     private String phoneNumber;
-    @Email
-    @NotNull
-    @NotBlank(message = "Please enter a valid email")
-    private String email;
-    private Date date;
+    private String message;
+    private LocalDate date = LocalDate.now();
+
     private Long ambassadorId;
+//    @Email
+//    @NotNull
+//    @NotBlank(message = "Please enter a valid email")
+//    private String email;
+
+
 
     public RequestAmbassador() {
     }
 
-    public RequestAmbassador(@NotBlank(message = "Please enter a valid first name") String firstName, String lastName, @NotNull String pickUpLocation, @NotBlank(message = "PLease enter a valid destination address") @NotNull String dropOffLocation, @NotNull @NotBlank(message = "Please enter a valid phone number") String phoneNumber, @Email @NotNull @NotBlank(message = "Please enter a valid email") String email, Date date) {
+    public RequestAmbassador(@NotBlank(message = "Please enter a valid first name") String firstName, String lastName, @NotNull String pickUpLocation, @NotBlank(message = "PLease enter a valid destination address") @NotNull String dropOffLocation, @NotNull @NotBlank(message = "Please enter a valid phone number") String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pickUpLocation = pickUpLocation;
         this.dropOffLocation = dropOffLocation;
         this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.date = date;
     }
 
     public Long getId() {
@@ -99,19 +99,19 @@ public class RequestAmbassador {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
