@@ -28,14 +28,15 @@ public class AmbassadorRequestService {
 
     public AmbassadorRequest findRequestById(Long requestId) {
         AmbassadorRequest request = ambassadorRequestRepo.findById(requestId).get();
+        return request;
     }
 
     public AmbassadorRequest findAllRequestsByFirstName(String firstName) {
-
+return null;
     }
 
     public AmbassadorRequest findAllRequestsByLastName(String lastName) {
-
+return null;
     }
 
     //update
