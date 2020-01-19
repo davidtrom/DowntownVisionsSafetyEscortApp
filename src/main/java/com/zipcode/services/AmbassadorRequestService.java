@@ -1,13 +1,9 @@
 package com.zipcode.services;
 
-import com.zipcode.models.Ambassador;
 import com.zipcode.models.AmbassadorRequest;
 import com.zipcode.repositories.AmbassadorRequestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class AmbassadorRequestService {
@@ -15,14 +11,14 @@ public class AmbassadorRequestService {
     @Autowired
     private AmbassadorRequestRepo ambassadorRequestRepo;
 
-    //new
+    //POST
     public AmbassadorRequest createRequest(AmbassadorRequest ambassadorRequest) {
         return ambassadorRequestRepo.save(ambassadorRequest);
     }
 
-    //get
+    //GET
 
-    public Iterable<AmbassadorRequest> findAll() {
+    public Iterable<AmbassadorRequest> findAllRequests() {
         return ambassadorRequestRepo.findAll();
     }
 
@@ -31,15 +27,22 @@ public class AmbassadorRequestService {
         return request;
     }
 
-    public AmbassadorRequest findAllRequestsByFirstName(String firstName) {
-return null;
+    public Iterable<AmbassadorRequest> findRequestsByAmbassadorId(Long ambassadorId) {
+        Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByAmbassadorId(ambassadorId);
+return requests;
     }
 
-    public AmbassadorRequest findAllRequestsByLastName(String lastName) {
-return null;
+    public Iterable<AmbassadorRequest> findAllRequestsByFirstName(String firstName) {
+        Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByFirstName(firstName);
+        return requests;
     }
 
-    //update
+    public Iterable<AmbassadorRequest> findAllRequestsByLastName(String lastName) {
+        Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByLastName(lastName);
+        return requests;
+    }
+
+    //UPDATE
     public void updateFirstName(AmbassadorRequest request, String newFirstName) {
         request.setFirstName(newFirstName);
         ambassadorRequestRepo.save(request);
@@ -49,7 +52,10 @@ return null;
         request.setLastName(newLastName);
         ambassadorRequestRepo.save(request);
     }
-
+    public void updatePhoneNumber(AmbassadorRequest request, String newPhoneNumber) {
+        request.setPhoneNumber(newPhoneNumber);
+        ambassadorRequestRepo.save(request);
+    }
 
     public void updatePickUpLocation(AmbassadorRequest request, String newPickUpLocation) {
         request.setPickUpLocation(newPickUpLocation);
@@ -61,15 +67,14 @@ return null;
         ambassadorRequestRepo.save(request);
     }
 
+    public void updateAmbassadorId(AmbassadorRequest request, Long newAmbassadorId) {
+        request.setAmbassadorId(newAmbassadorId);
+        ambassadorRequestRepo.save(request);
+    }
 
-    //delete
-    public Boolean deleteRequest(Long requestId) {
-        if (ambassadorRequestRepo.findById(requestId).isPresent()) {
+    //DELETE
+    public void deleteRequest(Long requestId) {
             ambassadorRequestRepo.deleteById(requestId);
-            return true;
-        } else {
-            return false;
-        }
     }
 
 
