@@ -3,16 +3,13 @@ package com.zipcode.controllers;
 import com.zipcode.exceptions.WorkOrderNotFoundException;
 import com.zipcode.models.WorkOrder;
 import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.zipcode.services.WorkOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/work-orders")

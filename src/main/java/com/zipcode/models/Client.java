@@ -1,7 +1,6 @@
 package com.zipcode.models;
 
 import com.zipcode.utility.EmailValidator;
-import com.zipcode.utility.PasswordValidator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
