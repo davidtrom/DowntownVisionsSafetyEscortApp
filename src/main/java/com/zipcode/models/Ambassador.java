@@ -2,6 +2,9 @@ package com.zipcode.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Ambassador {
@@ -17,6 +20,10 @@ public class Ambassador {
     private String lastName;
     @NotBlank(message = "Please enter a valid phone number")
     private String phoneNumber;
+    @OneToMany
+    private List<WorkOrder> workOrderList;
+    @ManyToOne
+    private WorkOrder workOrder;
 
     //Ambassador constructors
 
@@ -60,4 +67,22 @@ public class Ambassador {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public List<WorkOrder> getWorkOrderList() {
+        return workOrderList;
+    }
+
+    public void setWorkOrderList(List<WorkOrder> workOrderList) {
+        this.workOrderList = workOrderList;
+    }
+
+    public void addWorkOrderToList(WorkOrder workOrder) {
+        workOrderList.add(workOrder);
+    }
+
+    public void removeWorkOrderFromList(WorkOrder workOrder)    {
+        workOrderList.add(workOrder);
+    }
+
+
 }

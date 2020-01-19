@@ -2,8 +2,11 @@ package com.zipcode.controllers;
 
 
 import com.zipcode.exceptions.AmbassadorNotFoundException;
+import com.zipcode.exceptions.WorkOrderNotFoundException;
 import com.zipcode.models.Ambassador;
+import com.zipcode.models.WorkOrder;
 import com.zipcode.services.AmbassadorService;
+import com.zipcode.services.WorkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,12 @@ public class AmbassadorController {
 
 
     private AmbassadorService ambassadorService;
+    private WorkOrderService workOrderService;
 
     @Autowired
-    public AmbassadorController(AmbassadorService ambassadorService) {
+    public AmbassadorController(AmbassadorService ambassadorService, WorkOrderService workOrderService) {
         this.ambassadorService = ambassadorService;
+        this.workOrderService = workOrderService;
     }
 
     @PostMapping("/ambassador/create")
@@ -78,6 +83,15 @@ public class AmbassadorController {
             throw new AmbassadorNotFoundException();
         }
         return new ResponseEntity<>(ambassadors, HttpStatus.OK);
+    }
+
+    @GetMapping("/{workOrderId}/ambassadors")
+    public ResponseEntity<Iterable<Ambassador>> findAmbassadorsByWorkOrder(@PathVariable Long workOrderId, @RequestBody WorkOrder workOrder) {
+        if (workOrderService.findWorkOrderById(workOrderId) == null) {
+            throw new WorkOrderNotFoundException();
+        }
+        return new ResponseEntity<>(ambassadorService.findAmbassadorsByWorkOrder(workOrder), HttpStatus.OK);
+
     }
 
 
