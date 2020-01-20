@@ -1,14 +1,9 @@
 package com.zipcode.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+
 
 @Entity
 public class AmbassadorRequest {
@@ -16,6 +11,7 @@ public class AmbassadorRequest {
     @Id
     @GeneratedValue
     private Long id;
+
     @NotNull
     private String firstName;
     @NotNull
@@ -52,7 +48,7 @@ public class AmbassadorRequest {
 //        this.email = email;
 //    }
 
-    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String pickUpLocation, String dropOffLocation) {
+    public AmbassadorRequest(@NotNull String firstName, @NotNull String lastName, @NotNull String phoneNumber, @NotNull String pickUpLocation, @NotNull String dropOffLocation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -124,6 +120,7 @@ public class AmbassadorRequest {
         this.ambassadorId = ambassadorId;
     }
 
+    // May be added later - design decision
 //    public List<Ambassador> getAmbassadorList() {
 //        return ambassadorList;
 //    }

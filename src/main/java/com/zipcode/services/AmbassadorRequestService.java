@@ -10,17 +10,20 @@ import org.springframework.stereotype.Service;
 public class AmbassadorRequestService {
 
     private AmbassadorRequestRepo ambassadorRequestRepo;
-    private AmbassadorRepo ambassadorRepo;
 
     @Autowired
-    public AmbassadorRequestService(AmbassadorRequestRepo ambassadorRequestRepo, AmbassadorRepo ambassadorRepo) {
+    public AmbassadorRequestService(AmbassadorRequestRepo ambassadorRequestRepo) {
         this.ambassadorRequestRepo = ambassadorRequestRepo;
-        this.ambassadorRepo = ambassadorRepo;
     }
 
     // POST
-    public AmbassadorRequest createRequest(AmbassadorRequest ambassadorRequest) {
-        return ambassadorRequestRepo.save(ambassadorRequest);
+    public void createRequest(AmbassadorRequest ambassadorRequest) {
+        ambassadorRequest.setFirstName(ambassadorRequest.getFirstName());
+        ambassadorRequest.setLastName(ambassadorRequest.getLastName());
+        ambassadorRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
+        ambassadorRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
+        ambassadorRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
+        ambassadorRequestRepo.save(ambassadorRequest);
     }
 
     // GET
@@ -50,31 +53,37 @@ return requests;
     }
 
     // UPDATE
-    public void updateFirstName(AmbassadorRequest request, String newFirstName) {
+    public void updateFirstName(Long requestId, String newFirstName) {
+        AmbassadorRequest request = findRequestById(requestId);
         request.setFirstName(newFirstName);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateLastName(AmbassadorRequest request, String newLastName) {
+    public void updateLastName(Long requestId, String newLastName) {
+        AmbassadorRequest request = findRequestById(requestId);
         request.setLastName(newLastName);
         ambassadorRequestRepo.save(request);
     }
-    public void updatePhoneNumber(AmbassadorRequest request, String newPhoneNumber) {
+    public void updatePhoneNumber(Long requestId, String newPhoneNumber) {
+        AmbassadorRequest request = findRequestById(requestId);
         request.setPhoneNumber(newPhoneNumber);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updatePickUpLocation(AmbassadorRequest request, String newPickUpLocation) {
+    public void updatePickUpLocation(Long requestId, String newPickUpLocation) {
+        AmbassadorRequest request = findRequestById(requestId);
         request.setPickUpLocation(newPickUpLocation);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateDropOffLocation(AmbassadorRequest request, String newDropOffLocation) {
+    public void updateDropOffLocation(Long requestId, String newDropOffLocation) {
+        AmbassadorRequest request = findRequestById(requestId);
         request.setDropOffLocation(newDropOffLocation);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateAmbassadorId(AmbassadorRequest request, Long newAmbassadorId) {
+    public void updateAmbassadorId(Long requestId, Long newAmbassadorId) {
+        AmbassadorRequest request = findRequestById(requestId);
         request.setAmbassadorId(newAmbassadorId);
         ambassadorRequestRepo.save(request);
     }

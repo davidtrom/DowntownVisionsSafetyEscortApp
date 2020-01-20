@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/ambassador-requests")
 public class AmbassadorRequestController {
 
-    @Autowired
     private AmbassadorRequestService ambassadorRequestService;
+
+    @Autowired
+    public AmbassadorRequestController(AmbassadorRequestService ambassadorRequestService) {
+        this.ambassadorRequestService = ambassadorRequestService;
+    }
 
     // POST
     @PostMapping("/request")
     public ResponseEntity<AmbassadorRequest> createAmbassadorRequest(@RequestBody AmbassadorRequest ambassadorRequest) {
-        return new ResponseEntity(ambassadorRequestService.createRequest(ambassadorRequest), HttpStatus.CREATED);
+        ambassadorRequestService.createRequest(ambassadorRequest);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     // GET
@@ -72,8 +77,8 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updatePickUpLocation(request, newPickUpLocation);
-        return new ResponseEntity(HttpStatus.OK);
+        ambassadorRequestService.updatePickUpLocation(requestId, newPickUpLocation);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{requestId}/update-drop-off-location")
@@ -82,7 +87,7 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updateDropOffLocation(request, newDropOffLocation);
+        ambassadorRequestService.updateDropOffLocation(requestId, newDropOffLocation);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -92,8 +97,8 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updateFirstName(request, newFirstName);
-        return new ResponseEntity(HttpStatus.OK);
+        ambassadorRequestService.updateFirstName(requestId, newFirstName);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{requestId}/update-last-name/")
@@ -102,8 +107,8 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updateFirstName(request, newLastName);
-        return new ResponseEntity(HttpStatus.OK);
+        ambassadorRequestService.updateFirstName(requestId, newLastName);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // DELETE
