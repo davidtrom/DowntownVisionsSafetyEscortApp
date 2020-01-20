@@ -1,6 +1,7 @@
 package com.zipcode.services;
 
 import com.zipcode.models.AmbassadorRequest;
+import com.zipcode.repositories.AmbassadorRepo;
 import com.zipcode.repositories.AmbassadorRequestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,15 +9,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class AmbassadorRequestService {
 
-    @Autowired
     private AmbassadorRequestRepo ambassadorRequestRepo;
+    private AmbassadorRepo ambassadorRepo;
 
-    //POST
+    @Autowired
+    public AmbassadorRequestService(AmbassadorRequestRepo ambassadorRequestRepo, AmbassadorRepo ambassadorRepo) {
+        this.ambassadorRequestRepo = ambassadorRequestRepo;
+        this.ambassadorRepo = ambassadorRepo;
+    }
+
+    // POST
     public AmbassadorRequest createRequest(AmbassadorRequest ambassadorRequest) {
         return ambassadorRequestRepo.save(ambassadorRequest);
     }
 
-    //GET
+    // GET
 
     public Iterable<AmbassadorRequest> findAllRequests() {
         return ambassadorRequestRepo.findAll();
@@ -42,7 +49,7 @@ return requests;
         return requests;
     }
 
-    //UPDATE
+    // UPDATE
     public void updateFirstName(AmbassadorRequest request, String newFirstName) {
         request.setFirstName(newFirstName);
         ambassadorRequestRepo.save(request);
@@ -72,7 +79,7 @@ return requests;
         ambassadorRequestRepo.save(request);
     }
 
-    //DELETE
+    // DELETE
     public void deleteRequest(Long requestId) {
             ambassadorRequestRepo.deleteById(requestId);
     }

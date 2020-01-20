@@ -17,9 +17,8 @@ public class AmbassadorRequestController {
 
     // POST
     @PostMapping("/request")
-    public ResponseEntity<?> createAmbassadorRequest(@RequestBody AmbassadorRequest ambassadorRequest) {
-        ambassadorRequestService.createRequest(ambassadorRequest);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<AmbassadorRequest> createAmbassadorRequest(@RequestBody AmbassadorRequest ambassadorRequest) {
+        return new ResponseEntity(ambassadorRequestService.createRequest(ambassadorRequest), HttpStatus.CREATED);
     }
 
     // GET
@@ -49,6 +48,14 @@ public class AmbassadorRequestController {
     @GetMapping("/{lastName}")
     public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable String lastName){
         Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllRequestsByLastName(lastName);
+        if(requests == null) {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        return new ResponseEntity<>(requests, HttpStatus.OK);
+    }
+    @GetMapping("/ambassador/{id}")
+    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long id){
+        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(id);
         if(requests == null) {
             throw new AmbassadorRequestNotFoundException();
         }
