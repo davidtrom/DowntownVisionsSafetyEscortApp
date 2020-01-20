@@ -1,7 +1,6 @@
 package com.zipcode.services;
 
 import com.zipcode.models.AmbassadorRequest;
-import com.zipcode.repositories.AmbassadorRepo;
 import com.zipcode.repositories.AmbassadorRequestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class AmbassadorRequest {
     //AmbassadorRequest Fields
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull
@@ -48,7 +48,7 @@ public class AmbassadorRequest {
 //        this.email = email;
 //    }
 
-    public AmbassadorRequest(@NotNull String firstName, @NotNull String lastName, @NotNull String phoneNumber, @NotNull String pickUpLocation, @NotNull String dropOffLocation) {
+    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String pickUpLocation, String dropOffLocation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
