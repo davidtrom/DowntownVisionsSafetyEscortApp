@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     //configure to allow anyone to access some endpoints, all other needs to be authenticated
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins"
+        http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins", "work-orders/create", "ambassador-requests/request"
                 ).permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
