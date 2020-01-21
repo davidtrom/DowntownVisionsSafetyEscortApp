@@ -1,7 +1,7 @@
 package com.zipcode.services;
 
 import com.zipcode.models.WorkOrder;
-import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 import com.zipcode.repositories.WorkOrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +27,7 @@ public class WorkOrderService {
         workOrder.setLocation(workOrder.getLocation());
         workOrder.setWorkOrderStatus(workOrder.getWorkOrderStatus());
         workOrder.setDateCompleted(workOrder.getDateCompleted());
+        workOrderRepo.save(workOrder);
 
     }
 

@@ -1,7 +1,7 @@
 package com.zipcode.models;
 
 
-import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,8 +41,6 @@ public class WorkOrder {
         this.description = description;
         this.location = location;
     }
-
-
 
     public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
         this.id=id;

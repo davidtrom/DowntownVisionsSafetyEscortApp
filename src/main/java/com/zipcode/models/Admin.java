@@ -2,7 +2,6 @@ package com.zipcode.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
 @Entity
 public class Admin {

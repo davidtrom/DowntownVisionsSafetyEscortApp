@@ -1,7 +1,6 @@
 package com.zipcode.controllers;
 
 
-import com.zipcode.exceptions.AdminNotFoundException;
 import com.zipcode.models.Admin;
 import com.zipcode.models.dtoModels.AdminRegisterDTO;
 import com.zipcode.services.AdminService;

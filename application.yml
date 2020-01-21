@@ -1,10 +1,10 @@
----
-applications:
-  - name: dtv-backend
-    memory: 1G
-    instances: 1
-    buildpack: java_buildpack
-    path: target/dtv-app-0.0.1-SNAPSHOT.jar
-    services:
-      server:
-        port: 5432
+#---
+#applications:
+#  - name: dtv-backend
+#    memory: 1G
+#    instances: 1
+#    buildpack: java_buildpack
+#    path: target/Dtvapp-0.0.1-SNAPSHOT.jar
+#    services:
+#      server:
+#        port: 5432
