@@ -1,4 +1,6 @@
 package com.zipcode.models;
+import com.zipcode.models.WorkOrderAndRequestStatus.AmbassadorRequestStatus;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -20,8 +22,8 @@ public class AmbassadorRequest {
     @NotNull
     private String phoneNumber;
 
-    @NotNull
-    private String email;
+//    @NotNull
+//    private String email;
 
     //The city, state, and zip will all be in Wilmington.  We need a way to double check people are in the designated zone.
     @NotNull
@@ -30,30 +32,40 @@ public class AmbassadorRequest {
     @NotNull
     private String dropOffLocation;
 
-    @OneToOne
-    private Ambassador ambassador;
+//    @OneToOne
+//    private Ambassador ambassador;
 
     private LocalDate date = LocalDate.now();
+    private AmbassadorRequestStatus ambassadorRequestStatus = AmbassadorRequestStatus.OPEN;
 
 
     public AmbassadorRequest() {
-    }
-
-    public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String email, String pickUpLocation, String dropOffLocation) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.pickUpLocation = pickUpLocation;
-        this.dropOffLocation = dropOffLocation;
     }
 
     public AmbassadorRequest(String firstName, String lastName, String phoneNumber, String pickUpLocation, String dropOffLocation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        //this.email = email;
         this.pickUpLocation = pickUpLocation;
         this.dropOffLocation = dropOffLocation;
+    }
+
+    public AmbassadorRequest(Long id, String firstName, String lastName, String phoneNumber, String pickUpLocation, String dropOffLocation) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.pickUpLocation = pickUpLocation;
+        this.dropOffLocation = dropOffLocation;
+    }
+
+    public AmbassadorRequestStatus getAmbassadorRequestStatus() {
+        return ambassadorRequestStatus;
+    }
+
+    public void setAmbassadorRequestStatus(AmbassadorRequestStatus ambassadorRequestStatus) {
+        this.ambassadorRequestStatus = ambassadorRequestStatus;
     }
 
     public Long getId() { return id; }
@@ -72,9 +84,9 @@ public class AmbassadorRequest {
 
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
+//    public String getEmail() { return email; }
+//
+//    public void setEmail(String email) { this.email = email; }
 
     public String getPickUpLocation() { return pickUpLocation; }
 
@@ -88,9 +100,9 @@ public class AmbassadorRequest {
 
     public void setDate(LocalDate date) { this.date = date; }
 
-    public Ambassador getAmbassador() { return ambassador; }
-
-    public void setAmbassador(Ambassador ambassador) { this.ambassador = ambassador; }
+//    public Ambassador getAmbassador() { return ambassador; }
+//
+//    public void setAmbassador(Ambassador ambassador) { this.ambassador = ambassador; }
 
     // Maybe added later - design decision
 //    public List<Ambassador> getAmbassadorList() {

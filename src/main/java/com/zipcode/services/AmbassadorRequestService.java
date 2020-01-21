@@ -19,13 +19,14 @@ public class AmbassadorRequestService {
 
     // POST
     public void createRequest(AmbassadorRequest ambassadorRequest) {
-        AmbassadorRequest newRequest = new AmbassadorRequest();
-        newRequest.setFirstName(ambassadorRequest.getFirstName());
-        newRequest.setLastName(ambassadorRequest.getLastName());
-        newRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
-        newRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
-        newRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
-        ambassadorRequestRepo.save(newRequest);
+        ambassadorRequest.setFirstName(ambassadorRequest.getFirstName());
+        ambassadorRequest.setLastName(ambassadorRequest.getLastName());
+        ambassadorRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
+        ambassadorRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
+        ambassadorRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
+        ambassadorRequest.setDate(ambassadorRequest.getDate());
+        ambassadorRequest.setAmbassadorRequestStatus(ambassadorRequest.getAmbassadorRequestStatus());
+        ambassadorRequestRepo.save(ambassadorRequest);
     }
 
     // GET
@@ -39,10 +40,10 @@ public class AmbassadorRequestService {
         return request;
     }
 
-    public Iterable<AmbassadorRequest> findRequestsByAmbassadorId(Long ambassadorId) {
-        Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByAmbassadorId(ambassadorId);
-        return requests;
-    }
+//    public Iterable<AmbassadorRequest> findRequestsByAmbassadorId(Long ambassadorId) {
+//        Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByAmbassadorId(ambassadorId);
+//        return requests;
+//    }
 
     public AmbassadorRequest findRequestByPhoneNumber(String phoneNumber) {
         AmbassadorRequest request = ambassadorRequestRepo.findAmbassadorRequestByPhoneNumber(phoneNumber);
@@ -85,10 +86,10 @@ public class AmbassadorRequestService {
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateAmbassador(AmbassadorRequest request, Ambassador newAmbassador) {
-        request.setAmbassador(newAmbassador);
-        ambassadorRequestRepo.save(request);
-    }
+//    public void updateAmbassador(AmbassadorRequest request, Ambassador newAmbassador) {
+//        request.setAmbassador(newAmbassador);
+//        ambassadorRequestRepo.save(request);
+//    }
 
     // DELETE
     public void deleteRequest(Long requestId) {

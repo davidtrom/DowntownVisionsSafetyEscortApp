@@ -1,4 +1,4 @@
-package com.zipcode.models.WorkOrderStatus;
+package com.zipcode.models.WorkOrderAndRequestStatus;
 
 public enum WorkOrderStatus {
 

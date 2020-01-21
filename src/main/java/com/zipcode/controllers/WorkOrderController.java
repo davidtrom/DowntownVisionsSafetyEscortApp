@@ -4,7 +4,7 @@ import com.zipcode.exceptions.AmbassadorNotFoundException;
 import com.zipcode.exceptions.WorkOrderNotFoundException;
 import com.zipcode.models.Ambassador;
 import com.zipcode.models.WorkOrder;
-import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 import com.zipcode.services.AmbassadorService;
 import com.zipcode.services.WorkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;

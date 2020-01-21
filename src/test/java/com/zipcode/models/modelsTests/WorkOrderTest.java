@@ -1,14 +1,12 @@
 package com.zipcode.models.modelsTests;
 
 import com.zipcode.models.WorkOrder;
-import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WorkOrderTest {
 

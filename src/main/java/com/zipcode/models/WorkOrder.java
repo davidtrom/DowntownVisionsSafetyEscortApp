@@ -1,7 +1,7 @@
 package com.zipcode.models;
 
 
-import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

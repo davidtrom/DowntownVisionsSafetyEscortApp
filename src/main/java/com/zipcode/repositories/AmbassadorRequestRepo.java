@@ -10,5 +10,5 @@ public interface AmbassadorRequestRepo extends CrudRepository<AmbassadorRequest,
 Iterable<AmbassadorRequest> findAmbassadorRequestsByFirstName(String firstName);
 Iterable<AmbassadorRequest> findAmbassadorRequestsByLastName(String lastName);
 AmbassadorRequest findAmbassadorRequestByPhoneNumber(String phoneNumber);
-Iterable<AmbassadorRequest> findAmbassadorRequestsByAmbassadorId(Long ambassadorId);
+//Iterable<AmbassadorRequest> findAmbassadorRequestsByAmbassadorId(Long ambassadorId);
 }
