@@ -42,8 +42,6 @@ public class WorkOrder {
         this.location = location;
     }
 
-
-
     public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
         this.id=id;
         this.firstName = firstName;

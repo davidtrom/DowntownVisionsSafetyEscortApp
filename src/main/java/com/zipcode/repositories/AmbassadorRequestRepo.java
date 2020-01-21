@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface AmbassadorRequestRepo extends CrudRepository<AmbassadorRequest, Long> {
 Iterable<AmbassadorRequest> findAmbassadorRequestsByFirstName(String firstName);
 Iterable<AmbassadorRequest> findAmbassadorRequestsByLastName(String lastName);
+AmbassadorRequest findAmbassadorRequestByPhoneNumber(String phoneNumber);
 Iterable<AmbassadorRequest> findAmbassadorRequestsByAmbassadorId(Long ambassadorId);
 }

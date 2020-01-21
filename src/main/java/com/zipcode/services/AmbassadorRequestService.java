@@ -1,6 +1,8 @@
 package com.zipcode.services;
 
+import com.zipcode.models.Ambassador;
 import com.zipcode.models.AmbassadorRequest;
+import com.zipcode.repositories.AmbassadorRepo;
 import com.zipcode.repositories.AmbassadorRequestRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +19,13 @@ public class AmbassadorRequestService {
 
     // POST
     public void createRequest(AmbassadorRequest ambassadorRequest) {
-        ambassadorRequest.setFirstName(ambassadorRequest.getFirstName());
-        ambassadorRequest.setLastName(ambassadorRequest.getLastName());
-        ambassadorRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
-        ambassadorRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
-        ambassadorRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
-        ambassadorRequestRepo.save(ambassadorRequest);
+        AmbassadorRequest newRequest = new AmbassadorRequest();
+        newRequest.setFirstName(ambassadorRequest.getFirstName());
+        newRequest.setLastName(ambassadorRequest.getLastName());
+        newRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
+        newRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
+        newRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
+        ambassadorRequestRepo.save(newRequest);
     }
 
     // GET
@@ -38,7 +41,12 @@ public class AmbassadorRequestService {
 
     public Iterable<AmbassadorRequest> findRequestsByAmbassadorId(Long ambassadorId) {
         Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByAmbassadorId(ambassadorId);
-return requests;
+        return requests;
+    }
+
+    public AmbassadorRequest findRequestByPhoneNumber(String phoneNumber) {
+        AmbassadorRequest request = ambassadorRequestRepo.findAmbassadorRequestByPhoneNumber(phoneNumber);
+        return request;
     }
 
     public Iterable<AmbassadorRequest> findAllRequestsByFirstName(String firstName) {
@@ -52,38 +60,33 @@ return requests;
     }
 
     // UPDATE
-    public void updateFirstName(Long requestId, String newFirstName) {
-        AmbassadorRequest request = findRequestById(requestId);
+    public void updateFirstName(AmbassadorRequest request, String newFirstName) {
         request.setFirstName(newFirstName);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateLastName(Long requestId, String newLastName) {
-        AmbassadorRequest request = findRequestById(requestId);
+    public void updateLastName(AmbassadorRequest request, String newLastName) {
         request.setLastName(newLastName);
         ambassadorRequestRepo.save(request);
     }
-    public void updatePhoneNumber(Long requestId, String newPhoneNumber) {
-        AmbassadorRequest request = findRequestById(requestId);
+
+    public void updatePhoneNumber(AmbassadorRequest request, String newPhoneNumber) {
         request.setPhoneNumber(newPhoneNumber);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updatePickUpLocation(Long requestId, String newPickUpLocation) {
-        AmbassadorRequest request = findRequestById(requestId);
+    public void updatePickUpLocation(AmbassadorRequest request, String newPickUpLocation) {
         request.setPickUpLocation(newPickUpLocation);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateDropOffLocation(Long requestId, String newDropOffLocation) {
-        AmbassadorRequest request = findRequestById(requestId);
+    public void updateDropOffLocation(AmbassadorRequest request, String newDropOffLocation) {
         request.setDropOffLocation(newDropOffLocation);
         ambassadorRequestRepo.save(request);
     }
 
-    public void updateAmbassadorId(Long requestId, Long newAmbassadorId) {
-        AmbassadorRequest request = findRequestById(requestId);
-        request.setAmbassadorId(newAmbassadorId);
+    public void updateAmbassador(AmbassadorRequest request, Ambassador newAmbassador) {
+        request.setAmbassador(newAmbassador);
         ambassadorRequestRepo.save(request);
     }
 

@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins", "/reports/", "/clients",
                 "/clients/register", "/clients/check-email","/work-orders", "/work-orders/create",
-                "/ambassador-requests","/ambassador-requests/request").permitAll()
+                "/ambassador-requests", "/ambassador-requests/request", "/socket").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .and().csrf().disable()
                 .headers()
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
-                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "GET, DELETE, PUT, POST"))
+                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "GET, DELETE, PUT, POST, OPTION, HEAD"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));

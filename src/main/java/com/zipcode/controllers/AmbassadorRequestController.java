@@ -1,8 +1,10 @@
 package com.zipcode.controllers;
 
 import com.zipcode.exceptions.AmbassadorRequestNotFoundException;
+import com.zipcode.models.Ambassador;
 import com.zipcode.models.AmbassadorRequest;
 import com.zipcode.services.AmbassadorRequestService;
+import com.zipcode.services.AmbassadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class AmbassadorRequestController {
 
     private AmbassadorRequestService ambassadorRequestService;
+    private AmbassadorService ambassadorService;
 
     @Autowired
-    public AmbassadorRequestController(AmbassadorRequestService ambassadorRequestService) {
+    public AmbassadorRequestController(AmbassadorRequestService ambassadorRequestService, AmbassadorService ambassadorService) {
         this.ambassadorRequestService = ambassadorRequestService;
+        this.ambassadorService = ambassadorService;
     }
 
     // POST
@@ -42,6 +46,15 @@ public class AmbassadorRequestController {
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
+    @GetMapping("/{phoneNumber}")
+    public ResponseEntity<AmbassadorRequest> findRequestByPhoneNumber (@PathVariable String phoneNumber){
+        AmbassadorRequest request = ambassadorRequestService.findRequestByPhoneNumber(phoneNumber);
+        if(request == null) {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        return new ResponseEntity<>(request, HttpStatus.OK);
+    }
+
     @GetMapping("/{firstName}")
     public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByFirstName (@PathVariable String firstName){
         Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllRequestsByFirstName(firstName);
@@ -58,18 +71,29 @@ public class AmbassadorRequestController {
         }
         return new ResponseEntity<>(requests, HttpStatus.OK);
     }
-    @GetMapping("/ambassador/{id}")
-    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long id){
-        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(id);
+    @GetMapping("/ambassador/{ambassadorId}")
+    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long ambassadorId){
+        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(ambassadorId);
         if(requests == null) {
             throw new AmbassadorRequestNotFoundException();
         }
         return new ResponseEntity<>(requests, HttpStatus.OK);
     }
 
-    //ADD MORE GET METHODS
+    // MISSING GET METHODS: by origin, destination, email
 
     // UPDATE
+    @PutMapping("/{requestId}/ambassador/{ambassadorId}")
+    public ResponseEntity<AmbassadorRequest> updateAmbassador(@PathVariable Long requestId, @PathVariable Long ambassadorId)    {
+        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+        Ambassador newAmbassador = ambassadorService.findById(ambassadorId);
+
+        if(request == null)   {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        ambassadorRequestService.updateAmbassador(request, newAmbassador);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @PutMapping("/{requestId}/update-pickup-location/")
     public ResponseEntity<AmbassadorRequest> updatePickUpLocation(@PathVariable Long requestId, @RequestBody String newPickUpLocation)    {
@@ -77,17 +101,17 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updatePickUpLocation(requestId, newPickUpLocation);
+        ambassadorRequestService.updatePickUpLocation(request, newPickUpLocation);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/{requestId}/update-drop-off-location")
-    public ResponseEntity<AmbassadorRequest> updateWorkOrderDescription(@PathVariable Long requestId, @RequestBody String newDropOffLocation)   {
+    @PutMapping("/{requestId}/drop-off-location")
+    public ResponseEntity<AmbassadorRequest> updateDropOffLocation(@PathVariable Long requestId, @RequestBody String newDropOffLocation)   {
         AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updateDropOffLocation(requestId, newDropOffLocation);
+        ambassadorRequestService.updateDropOffLocation(request, newDropOffLocation);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -97,7 +121,7 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updateFirstName(requestId, newFirstName);
+        ambassadorRequestService.updateFirstName(request, newFirstName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -107,7 +131,17 @@ public class AmbassadorRequestController {
         if(request == null)   {
             throw new AmbassadorRequestNotFoundException();
         }
-        ambassadorRequestService.updateFirstName(requestId, newLastName);
+        ambassadorRequestService.updateLastName(request, newLastName);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{requestId}/update-phone-number/")
+    public ResponseEntity<AmbassadorRequest> updatePhoneNumber(@PathVariable Long requestId, @RequestBody String newPhoneNumber)    {
+        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+        if(request == null)   {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        ambassadorRequestService.updatePhoneNumber(request, newPhoneNumber);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
