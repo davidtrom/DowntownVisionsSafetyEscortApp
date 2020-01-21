@@ -1,7 +1,7 @@
 package com.zipcode.repositories;
 
 import com.zipcode.models.WorkOrder;
-import com.zipcode.models.WorkOrderStatus.WorkOrderStatus;
+import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -71,29 +71,29 @@ public class AmbassadorRequestController {
         }
         return new ResponseEntity<>(requests, HttpStatus.OK);
     }
-    @GetMapping("/ambassador/{ambassadorId}")
-    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long ambassadorId){
-        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(ambassadorId);
-        if(requests == null) {
-            throw new AmbassadorRequestNotFoundException();
-        }
-        return new ResponseEntity<>(requests, HttpStatus.OK);
-    }
+//    @GetMapping("/ambassador/{ambassadorId}")
+//    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long ambassadorId){
+//        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(ambassadorId);
+//        if(requests == null) {
+//            throw new AmbassadorRequestNotFoundException();
+//        }
+//        return new ResponseEntity<>(requests, HttpStatus.OK);
+//    }
 
     // MISSING GET METHODS: by origin, destination, email
 
     // UPDATE
-    @PutMapping("/{requestId}/ambassador/{ambassadorId}")
-    public ResponseEntity<AmbassadorRequest> updateAmbassador(@PathVariable Long requestId, @PathVariable Long ambassadorId)    {
-        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
-        Ambassador newAmbassador = ambassadorService.findById(ambassadorId);
-
-        if(request == null)   {
-            throw new AmbassadorRequestNotFoundException();
-        }
-        ambassadorRequestService.updateAmbassador(request, newAmbassador);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @PutMapping("/{requestId}/ambassador/{ambassadorId}")
+//    public ResponseEntity<AmbassadorRequest> updateAmbassador(@PathVariable Long requestId, @PathVariable Long ambassadorId)    {
+//        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+//        Ambassador newAmbassador = ambassadorService.findById(ambassadorId);
+//
+//        if(request == null)   {
+//            throw new AmbassadorRequestNotFoundException();
+//        }
+//        ambassadorRequestService.updateAmbassador(request, newAmbassador);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     @PutMapping("/{requestId}/update-pickup-location/")
     public ResponseEntity<AmbassadorRequest> updatePickUpLocation(@PathVariable Long requestId, @RequestBody String newPickUpLocation)    {
