@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class AmbassadorRequest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     @NotNull
