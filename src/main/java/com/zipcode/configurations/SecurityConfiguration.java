@@ -2,15 +2,20 @@ package com.zipcode.configurations;
 
 import com.zipcode.filters.JwtFilter;
 import com.zipcode.services.MyUserDetailsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -19,8 +24,12 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType.OPTION;
 
+
+@EnableWebSecurity
 @Configuration
+@ComponentScan("com.zipcode.services")
 @EnableWebMvc
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
@@ -39,10 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     //configure to allow anyone to access some endpoints, all other needs to be authenticated
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins", "/clients",
-                "/clients/register", "/clients/check-email", "/work-orders", "/work-orders/create",
-                "/ambassador-requests", "/ambassador-requests/request", "/socket"
-                ).permitAll()
+        http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins", "/reports/", "/clients",
+                "/clients/register", "/clients/check-email","/work-orders", "/work-orders/create", "/socket").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
@@ -54,11 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .and().csrf().disable()
                 .headers()
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
-                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "GET, DELETE, PUT, POST, OPTION, HEAD"))
+                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "GET, DELETE, PUT, POST*, OPTION, HEAD*"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
-                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers",
-                        "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));
+                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));
 
         //jwt filter for authentication and authorization
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
