@@ -25,6 +25,7 @@ public class AmbassadorRequestService {
         newRequest.setPhoneNumber(ambassadorRequest.getPhoneNumber());
         newRequest.setPickUpLocation(ambassadorRequest.getPickUpLocation());
         newRequest.setDropOffLocation(ambassadorRequest.getDropOffLocation());
+        newRequest.setDate(ambassadorRequest.getDate());
         ambassadorRequestRepo.save(newRequest);
     }
 
