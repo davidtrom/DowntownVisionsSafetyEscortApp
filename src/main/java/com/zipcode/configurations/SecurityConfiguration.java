@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType.OPTION;
+//import static jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType.OPTION;
 
 
 @EnableWebSecurity
@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins", "/reports/", "/clients",
-                "/clients/register", "/clients/check-email","/work-orders", "/work-orders/create", "/socket").permitAll()
+                "/clients/register", "/clients/check-email","/work-orders", "/work-orders/create", "/socket", "/ambassador-requests/request", "/ambassador-requests").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()

@@ -3,6 +3,7 @@ package com.zipcode.controllers;
 import com.zipcode.exceptions.AmbassadorRequestNotFoundException;
 import com.zipcode.models.Ambassador;
 import com.zipcode.models.AmbassadorRequest;
+import com.zipcode.models.WorkOrderAndRequestStatus.AmbassadorRequestStatus;
 import com.zipcode.services.AmbassadorRequestService;
 import com.zipcode.services.AmbassadorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,16 @@ public class AmbassadorRequestController {
         }
         return new ResponseEntity<>(requests, HttpStatus.OK);
     }
+
+    @GetMapping("/closed")
+    public ResponseEntity<Iterable<AmbassadorRequest>> findAllByClosedStatus () {
+        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllByClosedStatus();
+        if(requests == null) {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        return new ResponseEntity<>(requests, HttpStatus.OK);
+    }
+
 //    @GetMapping("/ambassador/{ambassadorId}")
 //    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long ambassadorId){
 //        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(ambassadorId);
@@ -142,6 +153,16 @@ public class AmbassadorRequestController {
             throw new AmbassadorRequestNotFoundException();
         }
         ambassadorRequestService.updatePhoneNumber(request, newPhoneNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/close/{requestId}")
+    public ResponseEntity<AmbassadorRequest> closeRequest (@PathVariable Long requestId) {
+        AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
+        if(request == null)   {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        ambassadorRequestService.updateRequestStatus(request);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
