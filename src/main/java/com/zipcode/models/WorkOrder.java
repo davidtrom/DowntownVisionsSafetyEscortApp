@@ -32,21 +32,21 @@ public class WorkOrder {
 
     private WorkOrderStatus workOrderStatus = WorkOrderStatus.OPEN;
     private LocalDate dateCompleted = null;
-    String awsUrl = "${endpointUrl}";   //we should consider renaming this field. This is the base S3 url and does not include the endpoint.
+    private String awsUrl = "${endpointUrl}"; //we should consider renaming this field. This is the base S3 url and does not include the endpoint.
+    private String fileName;
 
-    @ElementCollection
-    private List<String> awsFileEndPoints;
+
 
 
     public WorkOrder() {
     }
 
-    public WorkOrder(String firstName, String lastName, String description, String location, List<String> awsFileEndpoints) {
+    public WorkOrder(String firstName, String lastName, String description, String location, String fileName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.location = location;
-        this.awsFileEndPoints = awsFileEndpoints;
+        this.fileName = fileName;
     }
 
     public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
@@ -145,18 +145,18 @@ public class WorkOrder {
         this.awsUrl = awsUrl;
     }
 
-    public List<String> getAwsFileEndPoints() {
-        return awsFileEndPoints;
+    public String getAwsFileEndPoints() {
+        return fileName;
     }
 
-    public void setAwsFileEndPoints(List<String> awsFileEndPoints) {
-        this.awsFileEndPoints = awsFileEndPoints;
+    public void setAwsFileEndPoints(String fileName) {
+        this.fileName = fileName;
     }
 
-    public List<String> retrieveFileLocation()  {
-        for(int i = 0; i < awsFileEndPoints.size(); i++)    {
-
-        }
-
-    }
+//    public List<String> retrieveFileLocation()  {
+//        for(int i = 0; i < awsFileEndPoints.size(); i++)    {
+//
+//        }
+//
+//    }
 }
