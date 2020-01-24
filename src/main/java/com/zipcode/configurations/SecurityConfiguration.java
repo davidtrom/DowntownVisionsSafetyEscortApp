@@ -47,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/admin/create", "/authenticate","/admin/*", "/admins",
-                "/ambassador-requests", "/ambassador-requests/closed", "/ambassador-requests/request", "/ambassador-requests/close/*").permitAll()
+                "/ambassador-requests", "/ambassador-requests/closed", "/ambassador-requests/request", "/ambassador-requests/close/*",
+                "/ambassador-requests/show/*", "/ambassador-requests/delete/*").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
