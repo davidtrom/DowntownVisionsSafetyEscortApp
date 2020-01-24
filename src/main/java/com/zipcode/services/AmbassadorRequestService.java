@@ -46,6 +46,10 @@ public class AmbassadorRequestService {
         return ambassadorRequestRepo.findAmbassadorRequestByAmbassadorRequestStatus(AmbassadorRequestStatus.CLOSED);
     }
 
+    public Iterable<AmbassadorRequest> findAllByOpenStatus () {
+        return ambassadorRequestRepo.findAmbassadorRequestByAmbassadorRequestStatus(AmbassadorRequestStatus.OPEN);
+    }
+
 //    public Iterable<AmbassadorRequest> findRequestsByAmbassadorId(Long ambassadorId) {
 //        Iterable<AmbassadorRequest> requests = ambassadorRequestRepo.findAmbassadorRequestsByAmbassadorId(ambassadorId);
 //        return requests;

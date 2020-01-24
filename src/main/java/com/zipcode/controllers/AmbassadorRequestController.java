@@ -38,7 +38,7 @@ public class AmbassadorRequestController {
         return new ResponseEntity<>(ambassadorRequestService.findAllRequests(), HttpStatus.OK);
     }
 
-    @GetMapping("/{requestId}")
+    @GetMapping("/show/{requestId}")
     public ResponseEntity<AmbassadorRequest> findRequestById (@PathVariable Long requestId){
         AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
         if(request == null) {
@@ -76,6 +76,15 @@ public class AmbassadorRequestController {
     @GetMapping("/closed")
     public ResponseEntity<Iterable<AmbassadorRequest>> findAllByClosedStatus () {
         Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllByClosedStatus();
+        if(requests == null) {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        return new ResponseEntity<>(requests, HttpStatus.OK);
+    }
+
+    @GetMapping("/open")
+    public ResponseEntity<Iterable<AmbassadorRequest>> findAllByOpenStatus () {
+        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllByOpenStatus();
         if(requests == null) {
             throw new AmbassadorRequestNotFoundException();
         }
@@ -167,7 +176,7 @@ public class AmbassadorRequestController {
     }
 
     // DELETE
-    @DeleteMapping("/{requestId}")
+    @DeleteMapping("/delete/{requestId}")
     public ResponseEntity<AmbassadorRequest> deleteWorkOrder(@PathVariable Long requestId)    {
         AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
         if(request == null)   {
@@ -178,4 +187,6 @@ public class AmbassadorRequestController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 }
