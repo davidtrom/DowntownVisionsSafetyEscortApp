@@ -145,13 +145,11 @@ public class WorkOrder {
         this.awsUrl = awsUrl;
     }
 
-    public String getAwsFileEndPoints() {
-        return fileName;
+    public String getFileUrl() {
+        return awsUrl + this.fileName;
     }
 
-    public void setAwsFileEndPoints(String fileName) {
-        this.fileName = fileName;
-    }
+
 
 //    public List<String> retrieveFileLocation()  {
 //        for(int i = 0; i < awsFileEndPoints.size(); i++)    {
