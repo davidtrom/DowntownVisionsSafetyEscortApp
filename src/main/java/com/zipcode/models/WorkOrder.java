@@ -137,24 +137,10 @@ public class WorkOrder {
         ambassadorList.remove(ambassador);
     }
 
-    public String getAwsUrl() {
-        return awsUrl;
-    }
-
-    public void setAwsUrl(String awsUrl) {
-        this.awsUrl = awsUrl;
-    }
-
     public String getFileUrl() {
         return awsUrl + this.fileName;
     }
 
 
 
-//    public List<String> retrieveFileLocation()  {
-//        for(int i = 0; i < awsFileEndPoints.size(); i++)    {
-//
-//        }
-//
-//    }
 }
