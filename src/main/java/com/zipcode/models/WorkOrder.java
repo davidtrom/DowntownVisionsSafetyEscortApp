@@ -6,7 +6,9 @@ import com.zipcode.models.WorkOrderAndRequestStatus.WorkOrderStatus;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class WorkOrder {
@@ -30,16 +32,21 @@ public class WorkOrder {
 
     private WorkOrderStatus workOrderStatus = WorkOrderStatus.OPEN;
     private LocalDate dateCompleted = null;
+    private String awsUrl = "${endpointUrl}"; //we should consider renaming this field. This is the base S3 url and does not include the endpoint.
+    private String fileName;
+
+
 
 
     public WorkOrder() {
     }
 
-    public WorkOrder(String firstName, String lastName, String description, String location) {
+    public WorkOrder(String firstName, String lastName, String description, String location, String fileName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.location = location;
+        this.fileName = fileName;
     }
 
     public WorkOrder(Long id, String firstName, String lastName, String description, String location) {
@@ -129,4 +136,11 @@ public class WorkOrder {
     public void removeAmbassador(Ambassador ambassador) {
         ambassadorList.remove(ambassador);
     }
+
+    public String getFileUrl() {
+        return awsUrl + this.fileName;
+    }
+
+
+
 }
