@@ -29,7 +29,7 @@ public class WebSocketController {
 
     @CrossOrigin
     @MessageMapping("/create")
-    @SendTo("/topic")
+    @SendTo("/app/topic")
     public WorkOrder order(@RequestBody WorkOrder order) throws Exception {
         Thread.sleep(1000);
         return webSocketService.create(order);
