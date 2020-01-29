@@ -1,4 +1,4 @@
-package com.zipcode.models.controllerTests;
-
-public class LoginControllerTests {
-}
+//package com.zipcode.models.controllerTests;
+//
+//public class LoginControllerTests {
+//}

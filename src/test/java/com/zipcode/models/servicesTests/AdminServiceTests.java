@@ -1,4 +1,4 @@
-package com.zipcode.models.servicesTests;
-
-public class AdminServiceTests {
-}
+//package com.zipcode.models.servicesTests;
+//
+//public class AdminServiceTests {
+//}

@@ -1,13 +1,13 @@
-package com.zipcode.models.servicesTests;
-
-public class AmbassadorServiceTests {
-
-
-//    @Inject
-//    private AmbassadorRepo;
-
-
-
-
-
-}
+//package com.zipcode.models.servicesTests;
+//
+//public class AmbassadorServiceTests {
+//
+//
+////    @Inject
+////    private AmbassadorRepo;
+//
+//
+//
+//
+//
+//}

@@ -17,12 +17,12 @@ public class S3BucketController {
         this.amazonS3BucketService = amazonS3BucketService;
     }
 
-    @PostMapping("/work-orders/uploadFile")
+    @PostMapping("/work-orders/upload-file")
     public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
         return this.amazonS3BucketService.uploadFile(file);
     }
 
-    @PostMapping("/work-orders/deleteFile")
+    @PostMapping("/work-orders/delete-file")
     public String deleteFile(@RequestBody String fileURL) {
         return this.amazonS3BucketService.deleteFileFromBucket(fileURL);
     }
