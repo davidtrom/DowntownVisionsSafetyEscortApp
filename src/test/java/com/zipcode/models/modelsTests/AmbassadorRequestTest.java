@@ -15,7 +15,7 @@ class AmbassadorRequestTest {
 
     @BeforeEach
     void setUp() {
-        ambassadorRequest = new AmbassadorRequest(12L, "FirstName", "LastName", "302-123-4567", "1007 N. Orange St.", "Stitch House Brewery");
+        ambassadorRequest = new AmbassadorRequest(12L, "FirstName", "LastName", "302-123-4567","1007 N. Orange St.", "Stitch House Brewery");
     }
 
     @Test

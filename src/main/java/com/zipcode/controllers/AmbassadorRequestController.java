@@ -22,6 +22,7 @@ public class AmbassadorRequestController {
     public AmbassadorRequestController(AmbassadorRequestService ambassadorRequestService, AmbassadorService ambassadorService) {
         this.ambassadorRequestService = ambassadorRequestService;
         this.ambassadorService = ambassadorService;
+
     }
 
     // POST
