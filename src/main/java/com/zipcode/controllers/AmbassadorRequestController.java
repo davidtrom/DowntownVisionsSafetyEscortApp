@@ -83,6 +83,15 @@ public class AmbassadorRequestController {
         return new ResponseEntity<>(requests, HttpStatus.OK);
     }
 
+    @GetMapping("/open")
+    public ResponseEntity<Iterable<AmbassadorRequest>> findAllByOpenStatus () {
+        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findAllByOpenStatus();
+        if(requests == null) {
+            throw new AmbassadorRequestNotFoundException();
+        }
+        return new ResponseEntity<>(requests, HttpStatus.OK);
+    }
+
 //    @GetMapping("/ambassador/{ambassadorId}")
 //    public ResponseEntity<Iterable<AmbassadorRequest>> findAllRequestsByLastName (@PathVariable Long ambassadorId){
 //        Iterable<AmbassadorRequest> requests = ambassadorRequestService.findRequestsByAmbassadorId(ambassadorId);
