@@ -166,7 +166,7 @@ public class AmbassadorRequestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/close/{requestId}")
+    @PostMapping("/close/{requestId}")
     public ResponseEntity<AmbassadorRequest> closeRequest (@PathVariable Long requestId) {
         AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
         if(request == null)   {
@@ -177,7 +177,7 @@ public class AmbassadorRequestController {
     }
 
     // DELETE
-    @DeleteMapping("/{requestId}")
+    @DeleteMapping("/delete/{requestId}")
     public ResponseEntity<AmbassadorRequest> deleteWorkOrder(@PathVariable Long requestId)    {
         AmbassadorRequest request = ambassadorRequestService.findRequestById(requestId);
         if(request == null)   {
