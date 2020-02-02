@@ -42,6 +42,10 @@ public class AmbassadorRequestService {
         return request;
     }
 
+    public Iterable<AmbassadorRequest> findAllByOpenStatus () {
+        return ambassadorRequestRepo.findAmbassadorRequestByAmbassadorRequestStatus(AmbassadorRequestStatus.OPEN);
+    }
+
     public Iterable<AmbassadorRequest> findAllByClosedStatus () {
         return ambassadorRequestRepo.findAmbassadorRequestByAmbassadorRequestStatus(AmbassadorRequestStatus.CLOSED);
     }
