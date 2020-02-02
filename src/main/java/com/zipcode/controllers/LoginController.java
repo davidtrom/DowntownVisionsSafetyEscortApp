@@ -2,7 +2,7 @@ package com.zipcode.controllers;
 
 import com.zipcode.models.authenticationModels.AuthenticationRequest;
 import com.zipcode.models.authenticationModels.AuthenticationResponse;
-import com.zipcode.services.userDetails.MyUserDetailsService;
+import com.zipcode.services.MyUserDetailsService;
 import com.zipcode.utility.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

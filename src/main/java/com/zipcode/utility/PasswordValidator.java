@@ -1,4 +1,4 @@
-package com.zipcode.utility.authentication;
+package com.zipcode.utility;
 
 import org.springframework.stereotype.Service;
 

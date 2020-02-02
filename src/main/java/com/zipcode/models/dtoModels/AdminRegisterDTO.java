@@ -1,40 +1,21 @@
-package com.zipcode.models;
+package com.zipcode.models.dtoModels;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-@Entity
-public class Admin {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
-    private Long id;
-    @NotNull
+public class AdminRegisterDTO {
     private String firstName;
-    @NotNull
     private String lastName;
-    @NotNull
     private String username;
-    @NotNull
     private String password;
+    private String confirmPassword;
 
-    public Admin() {
+    public AdminRegisterDTO() {
     }
 
-    public Admin(@NotNull String firstName, @NotNull String lastName, @NotNull String username, @NotNull String password) {
+    public AdminRegisterDTO(String firstName, String lastName, String username, String password, String confirmPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.confirmPassword = confirmPassword;
     }
 
     public String getFirstName() {
@@ -67,5 +48,13 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

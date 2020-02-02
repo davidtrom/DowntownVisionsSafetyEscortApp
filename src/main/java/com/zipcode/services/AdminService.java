@@ -1,8 +1,9 @@
 package com.zipcode.services;
 
 import com.zipcode.models.Admin;
+import com.zipcode.models.dtoModels.AdminRegisterDTO;
 import com.zipcode.repositories.AdminRepo;
-import com.zipcode.utility.authentication.PasswordValidator;
+import com.zipcode.utility.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,7 +25,7 @@ public class AdminService {
 
 
     //new
-    public Boolean newAdmin (Admin admin){
+    public Admin newAdmin (AdminRegisterDTO admin){
         if(!adminRepo.existsByUsername(admin.getUsername()) && PasswordValidator.validatePassword(admin.getPassword())){
             Admin newAdmin = new Admin();
             newAdmin.setFirstName(admin.getFirstName());
@@ -32,25 +33,26 @@ public class AdminService {
             newAdmin.setUsername(admin.getUsername());
 
             newAdmin.setPassword(passwordEncoder.encode(admin.getPassword()));
-            adminRepo.save(newAdmin);
-            return true;
+            return adminRepo.save(newAdmin);
         }else
-            return false;
+            return null;
     }
 
     //update
-    public Boolean updateAdmin(Long id, Admin admin){
-        if(adminRepo.existsById(id)){
-            Admin updateAdmin = findById(id);
-            updateAdmin.setFirstName(admin.getFirstName());
-            updateAdmin.setLastName(admin.getLastName());
-            updateAdmin.setUsername(admin.getUsername());
-            updateAdmin.setPassword(admin.getPassword());
-            adminRepo.save(updateAdmin);
-            return true;
-        }
-        return false;
-    }
+//    public Boolean updateAdminLastName(Admin admin, String lastName)    {
+//        admin.setLastName(lastName);
+//
+//
+//            Admin updateAdmin = findById(id);
+//            updateAdmin.setFirstName(admin.getFirstName());
+//            updateAdmin.setLastName(admin.getLastName());
+//            updateAdmin.setUsername(admin.getUsername());
+//            updateAdmin.setPassword(admin.getPassword());
+//            adminRepo.save(updateAdmin);
+//            return true;
+//        }
+//        return false;
+//    }
 
     //delete
     public Boolean deleteAdmin(Long id){
@@ -69,4 +71,6 @@ public class AdminService {
     public Iterable<Admin> findAll(){
         return adminRepo.findAll();
     }
+
+
 }

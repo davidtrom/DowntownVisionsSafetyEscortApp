@@ -1,4 +1,4 @@
-package com.zipcode.models.controllerTests;
-
-public class AmbassadorControllerTests {
-}
+//package com.zipcode.models.controllerTests;
+//
+//public class AmbassadorControllerTests {
+//}

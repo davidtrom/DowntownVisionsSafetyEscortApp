@@ -1,4 +1,4 @@
-package com.zipcode.services.userDetails;
+package com.zipcode.services;
 
 
 import com.zipcode.models.Admin;
@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 
 import java.util.ArrayList;
 
@@ -27,6 +26,5 @@ public class MyUserDetailsService implements UserDetailsService {
         }catch(UsernameNotFoundException e){
             throw new UsernameNotFoundException("Username or password does not exist", e);
         }
-
     }
 }
