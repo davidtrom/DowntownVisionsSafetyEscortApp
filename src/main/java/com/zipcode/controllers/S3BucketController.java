@@ -1,20 +1,22 @@
 package com.zipcode.controllers;
 
 import com.zipcode.services.AmazonS3BucketService;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 
 
-@Controller
+@RestController
 public class S3BucketController {
 
     private AmazonS3BucketService amazonS3BucketService;
 
 
+    @Autowired
     S3BucketController(AmazonS3BucketService amazonS3BucketService) {
         this.amazonS3BucketService = amazonS3BucketService;
     }
